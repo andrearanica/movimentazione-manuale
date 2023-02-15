@@ -17,6 +17,9 @@ session_start();
     <div class="container my-5 text-center">
         <h1>Dashboard</h1>
         <?php require('./components/accountInfo.php'); ?>
+        <btn id="getAllEvaluationsButton" class="btn btn-primary">Tutte le valutazioni</btn>
+        <center><div class="row" id="showAllEvaluations">
+        </div></center>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="script.js"></script>

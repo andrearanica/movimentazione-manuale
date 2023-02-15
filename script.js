@@ -18,3 +18,22 @@ document.getElementById('myAccount').addEventListener('click', () => {
         }
     })
 })
+
+document.getElementById('getAllEvaluationsButton').addEventListener('click', () => {
+    document.getElementById('showAllEvaluations').innerHTML = ''
+    $.ajax({
+        url: './ajax/getAllEvaluations.php',
+        dataType: 'json',
+        success: (result) => {
+            document.getElementById('showAllEvaluations').innerHTML = '<div class="row">'
+            result.map(resul => document.getElementById('showAllEvaluations').innerHTML += `
+            <div class="col"><div class="card my-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${ resul.business_name }</h5>
+                    <p class="card-text">${ resul.timestamp }</p>
+                </div>
+            </div>`)
+            document.getElementById('showAllEvaluations').innerHTML += '</div>'
+        }
+    })
+}) 
