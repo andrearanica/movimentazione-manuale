@@ -1,24 +1,3 @@
-document.getElementById('myAccount').addEventListener('click', () => {
-    $.ajax({
-        type: 'GET',
-        data: {
-            username: 'mauriziogaffuri'
-        },
-        url: './ajax/getAccountInfo.php',
-        dataType: 'json',
-        success: (result) => {
-            document.getElementById('name_surname').innerHTML = 'Nome e cognome: ' + result.name_surname
-            document.getElementById('username').innerHTML = 'Username: ' + result.username
-            if (result.role == 0) {
-                document.getElementById('role').innerHTML = 'Ruolo: visualizzatore';
-            } else if (result.role == 1) {
-                document.getElementById('role').innerHTML = 'Ruolo: ';
-            }
-             
-        }
-    })
-})
-
 document.getElementById('getAllEvaluationsButton').addEventListener('click', () => {
     document.getElementById('showAllEvaluations').innerHTML = ''
     $.ajax({
@@ -26,13 +5,17 @@ document.getElementById('getAllEvaluationsButton').addEventListener('click', () 
         dataType: 'json',
         success: (result) => {
             document.getElementById('showAllEvaluations').innerHTML = '<div class="row">'
-            result.map(r => document.getElementById('showAllEvaluations').innerHTML += `
-            <div class="col"><div class="card my-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">${ r.business_name }</h5>
-                    <p class="card-text">${ r.timestamp }</p>
-                </div>
-            </div>`)
+            result.map(r => {
+                document.getElementById('showAllEvaluations').innerHTML += `
+                <div class="col"><div class="card my-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${ r.businessName }</h5>
+                        <p class="card-text">${ r.date }</p>
+                    </div>
+                </div>`
+
+            })    
+            
             document.getElementById('showAllEvaluations').innerHTML += '</div>'
         }
     })
@@ -83,4 +66,42 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
             result.map(r => document.getElementById('gripValue').innerHTML += `<option value=${ r.value }>${ r.value }</option>`)
         }
     })
+})
+
+document.getElementById('addEvaluation').addEventListener('click', () => {
+    const businessName = document.getElementById('businessName').value
+    const date = document.getElementById('date').value
+    const heightFromGround = document.getElementById('heightFromGround').value
+    const verticalDistance = document.getElementById('verticalDistance').value
+    const horizontalDistance = document.getElementById('horizontalDistance').value
+    const angularDisplacement = document.getElementById('angularDisplacement').value
+    const gripValue = document.getElementById('gripValue').value
+    const realWeight = document.getElementById('realWeight').value
+
+    $.ajax({
+        url: './ajax/addNewEvaluation.php',
+        data: {
+            businessName: businessName,
+            date: date,
+            heightFromGround: heightFromGround,
+            verticalDistance: verticalDistance,
+            horizontalDistance: horizontalDistance,
+            angularDisplacement: angularDisplacement,
+            gripValue: gripValue,
+            realWeight: realWeight
+        },
+        success: (result) => {
+            if (result == 1) {
+                document.getElementById('alert').innerHTML = ''
+                document.getElementById('alert').className='alert alert-success'
+                document.getElementById('alert').innerHTML = 'Nuova valutazione inserita con successo'
+            }
+            console.log(result)
+        }
+    })
+})
+
+document.getElementById('newEvaluationButtonClose').addEventListener('click', () => {
+    document.getElementById('alert').className = ''
+    document.getElementById('alert').innerHTML = ''
 })

@@ -26,11 +26,9 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $row['username'];
     $_SESSION['password'] = $row['password'];
     $_SESSION['role'] = $row['role'];
-    if ($row['role'] == 0) {
-        header('Location: php');
-    } else if ($row['role'] == 1) {
-        header('Location: admin.php');
-    }
+    header('Location: admin.php');
+} else {
+    header('index.php');
 }
 
 ?>

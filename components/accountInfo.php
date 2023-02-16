@@ -7,9 +7,9 @@
                 </div>
                 <div class="modal-body">
                     <h4>Il mio account</h4>
-                    <p class="my-1" id="name_surname"></p>
-                    <p class="my-1" id="username"></p>
-                    <p class="my-1" id="role"></p>
+                    <p class="my-1" id="name_surname">Nome e cognome: <?php echo $_SESSION['name_surname']; ?></p>
+                    <p class="my-1" id="username">Username: <?php echo $_SESSION['username']; ?></p>
+                    <p class="my-1" id="role">Ruolo: <?php if ($_SESSION['role'] == 0) { echo 'visualizzatore'; } ?></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Save changes</button>
