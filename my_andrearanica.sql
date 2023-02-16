@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Feb 15, 2023 alle 21:31
+-- Host: 127.0.0.1
+-- Creato il: Feb 16, 2023 alle 21:38
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -24,19 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `angularDisplacement`
+-- Struttura della tabella `angulardisplacement`
 --
 
-CREATE TABLE `angularDisplacement` (
+CREATE TABLE `angulardisplacement` (
   `displacement` int(11) NOT NULL,
   `factor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `angularDisplacement`
+-- Dump dei dati per la tabella `angulardisplacement`
 --
 
-INSERT INTO `angularDisplacement` (`displacement`, `factor`) VALUES
+INSERT INTO `angulardisplacement` (`displacement`, `factor`) VALUES
 (0, 1),
 (30, 0.9),
 (60, 0.81),
@@ -82,38 +82,67 @@ CREATE TABLE `companies` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `gripValue`
+-- Struttura della tabella `evaluations`
 --
 
-CREATE TABLE `gripValue` (
+CREATE TABLE `evaluations` (
+  `id` int(11) NOT NULL,
+  `businessName` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `realWeight` float NOT NULL,
+  `heightFromGround` float NOT NULL,
+  `verticalDistance` float NOT NULL,
+  `horizontalDistance` float NOT NULL,
+  `angularDisplacement` float NOT NULL,
+  `gripValue` varchar(10) NOT NULL,
+  `maximumWeight` float NOT NULL,
+  `IR` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `evaluations`
+--
+
+INSERT INTO `evaluations` (`id`, `businessName`, `date`, `realWeight`, `heightFromGround`, `verticalDistance`, `horizontalDistance`, `angularDisplacement`, `gripValue`, `maximumWeight`, `IR`) VALUES
+(1, 'Project Informatica', '0000-00-00', 0, 0, 0, 25, 0, 'Buono', 0, 0),
+(2, 'Sorint', '0000-00-00', 15.3, 50, 0, 25, 0, 'Buono', 0, 0),
+(3, 'pngdm', '0000-00-00', 25, 75, 0, 25, 0, 'Buono', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `gripvalue`
+--
+
+CREATE TABLE `gripvalue` (
   `value` varchar(255) NOT NULL,
   `factor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `gripValue`
+-- Dump dei dati per la tabella `gripvalue`
 --
 
-INSERT INTO `gripValue` (`value`, `factor`) VALUES
+INSERT INTO `gripvalue` (`value`, `factor`) VALUES
 ('Buono', 1),
 ('Scarso', 0.9);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `heightFromGround`
+-- Struttura della tabella `heightfromground`
 --
 
-CREATE TABLE `heightFromGround` (
+CREATE TABLE `heightfromground` (
   `height` int(11) NOT NULL,
   `factor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `heightFromGround`
+-- Dump dei dati per la tabella `heightfromground`
 --
 
-INSERT INTO `heightFromGround` (`height`, `factor`) VALUES
+INSERT INTO `heightfromground` (`height`, `factor`) VALUES
 (0, 0.77),
 (25, 0.85),
 (50, 0.93),
@@ -126,19 +155,19 @@ INSERT INTO `heightFromGround` (`height`, `factor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `horizontalDistance`
+-- Struttura della tabella `horizontaldistance`
 --
 
-CREATE TABLE `horizontalDistance` (
+CREATE TABLE `horizontaldistance` (
   `distance` int(11) NOT NULL,
   `factor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `horizontalDistance`
+-- Dump dei dati per la tabella `horizontaldistance`
 --
 
-INSERT INTO `horizontalDistance` (`distance`, `factor`) VALUES
+INSERT INTO `horizontaldistance` (`distance`, `factor`) VALUES
 (25, 1),
 (30, 0.83),
 (40, 0.63),
@@ -247,24 +276,25 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name_surname`, `username`, `password`, `role`) VALUES
-(1, 'Maurizio Gaffuri', 'mauriziogaffuri', 'mauriziogaffuri', 1);
+(1, 'Maurizio Gaffuri', 'mauriziogaffuri', 'mauriziogaffuri', 1),
+(2, 'Diego Bernini', 'diegobernini', 'diegobernini', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `verticalDistance`
+-- Struttura della tabella `verticaldistance`
 --
 
-CREATE TABLE `verticalDistance` (
+CREATE TABLE `verticaldistance` (
   `dislocation` int(11) NOT NULL,
   `factor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `verticalDistance`
+-- Dump dei dati per la tabella `verticaldistance`
 --
 
-INSERT INTO `verticalDistance` (`dislocation`, `factor`) VALUES
+INSERT INTO `verticaldistance` (`dislocation`, `factor`) VALUES
 (25, 1),
 (30, 0.97),
 (40, 0.93),
@@ -279,9 +309,9 @@ INSERT INTO `verticalDistance` (`dislocation`, `factor`) VALUES
 --
 
 --
--- Indici per le tabelle `angularDisplacement`
+-- Indici per le tabelle `angulardisplacement`
 --
-ALTER TABLE `angularDisplacement`
+ALTER TABLE `angulardisplacement`
   ADD PRIMARY KEY (`displacement`);
 
 --
@@ -298,21 +328,27 @@ ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `gripValue`
+-- Indici per le tabelle `evaluations`
 --
-ALTER TABLE `gripValue`
+ALTER TABLE `evaluations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `gripvalue`
+--
+ALTER TABLE `gripvalue`
   ADD PRIMARY KEY (`value`);
 
 --
--- Indici per le tabelle `heightFromGround`
+-- Indici per le tabelle `heightfromground`
 --
-ALTER TABLE `heightFromGround`
+ALTER TABLE `heightfromground`
   ADD PRIMARY KEY (`height`);
 
 --
--- Indici per le tabelle `horizontalDistance`
+-- Indici per le tabelle `horizontaldistance`
 --
-ALTER TABLE `horizontalDistance`
+ALTER TABLE `horizontaldistance`
   ADD PRIMARY KEY (`distance`);
 
 --
@@ -349,9 +385,9 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `verticalDistance`
+-- Indici per le tabelle `verticaldistance`
 --
-ALTER TABLE `verticalDistance`
+ALTER TABLE `verticaldistance`
   ADD PRIMARY KEY (`dislocation`);
 
 --
@@ -369,6 +405,12 @@ ALTER TABLE `classes`
 --
 ALTER TABLE `companies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `evaluations`
+--
+ALTER TABLE `evaluations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `schools`
@@ -398,7 +440,7 @@ ALTER TABLE `teaches`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Limiti per le tabelle scaricate
