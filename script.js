@@ -11,6 +11,8 @@ document.getElementById('getAllEvaluationsButton').addEventListener('click', () 
                     <div class="card-body">
                         <h5 class="card-title">${ r.businessName }</h5>
                         <p class="card-text">${ r.date }</p>
+                        ${ r.IR > 1 ? '<div class="alert alert-danger">' : '<div class="alert alert-success">' }<b class="card-text">IR: ${ r.IR }</b></div>
+                        <button class="btn btn-primary " onclick=showEvaluationInfo(${ r.id }) data-bs-toggle="modal" data-bs-target="#evaluationInfoModal">Visualizza</button>
                     </div>
                 </div>`
 
@@ -20,6 +22,57 @@ document.getElementById('getAllEvaluationsButton').addEventListener('click', () 
         }
     })
 }) 
+
+function showEvaluationInfo (id) {
+    console.log(id)
+    $.ajax({
+        url: './ajax/getEvaluationInfo.php',
+        dataType: 'json',
+        data: {
+            id: id
+        },
+        success: (result) => {
+            document.getElementById('evaluationInfoModalBody').innerHTML = `
+            <p class="my-2">
+            <b>Informazioni generali</b><br>
+            Ragione sociale: ${ result.businessName }<br>
+            Data di rilascio: ${ result.date }<br>
+            Peso realmente sollevato: ${ result.realWeight }
+            </p>
+            <center>
+            <table style="border: 1px solid black; margin: 40px;" class="text-center">
+                <tr>
+                    <th style="border: 1px solid black; padding: 15px;">Fattore moltiplicativo</th>
+                    <th style="border: 1px solid black; padding: 15px;">Valore</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 15px;">Altezza da terra delle mani all'inizio del sollevamento</td>
+                    <td style="border: 1px solid black; padding: 15px;">${ result.heightFromGround }</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 15px;">Distanza verticale di spostamento del peso fra inizio e fine del sollevamento</td>
+                    <td style="border: 1px solid black; padding: 15px;">${ result.verticalDistance }</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 15px;">Distanza orizzontale tra le mani e il punto di mezzo delle caviglie</td>
+                    <td style="border: 1px solid black; padding: 15px;">${ result.horizontalDistance }</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 15px;">Dislocazione angolare del peso in gradi</td>
+                    <td style="border: 1px solid black; padding: 15px;">${ result.angularDisplacement }</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 15px;">Giudizio sulla presa del carico</td>
+                    <td style="border: 1px solid black; padding: 15px;">${ result.gripValue }</td>
+                </tr>
+            </table>
+            </center>
+            ${ result.IR < 1 ? '<div class="alert alert-success">' : '<div class="alert alert-danger">' }<b>Peso massimo consentito: ${ result.maximumWeight }</b><br>
+            <b>Indice di sollevamento: ${ result.IR }</b></div>
+            `
+        }
+    })
+}
 
 document.getElementById('newEvaluationButton').addEventListener('click', () => {
     $.ajax({

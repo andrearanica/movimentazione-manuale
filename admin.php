@@ -4,7 +4,7 @@ session_start();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,22 @@ session_start();
         <center><div class="row" id="showAllEvaluations">
         </div></center>
         <?php if ($_SESSION['role'] == 1) { require('./components/newEvaluation.php'); } ?>
+        <div class="modal fade" id="evaluationInfoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Informazioni</h1>
+                        <button type="button" id="newEvaluationButtonClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="evaluationInfoModalBody">
+                        undefined
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="script.js"></script>
