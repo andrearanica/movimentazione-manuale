@@ -15,25 +15,26 @@
         <label for="date">Data di emissione</label>
         <input class="form-control my-2 text-center" name="date" id="date" type="date">
         <label for="realWeight">Peso reale</label>
-        <input class="form-control my-2" name="realWeight" id="realWeight">
+        <input class="form-control my-2 text-center" name="realWeight" id="realWeight" type="number">
         <label for="heightFromGround">Altezza da terra delle mani all'inizio del sollevamento</label>
-        <select class="form-control my-2 text-center" name="heightFromGround" id="heightFromGround">
+        <select class="form-control my-2 text-center" name="heightFromGround" id="heightFromGround" type="number">
             
         </select>
         <label for="verticalDistance">Distanza verticale di spostamento del peso fra inizio e fine sollevamento</label>
-        <select class="form-control my-2 text-center" name="verticalDistance" id="verticalDistance">
+        <select class="form-control my-2 text-center" name="verticalDistance" id="verticalDistance" type="number">
 
         </select>
         <label for="horizontalDistance">Distanza orizzontale tra mani e punto di mezzo delle caviglie</label>
-        <select class="form-control my-2 text-center" name="horizontalDistance" id="horizontalDistance">
+        <select class="form-control my-2 text-center" name="horizontalDistance" id="horizontalDistance" type="number">
 
         </select>
         <label for="angularDisplacement">Dislocazione angolare del peso in gradi</label>
-        <select class="form-control my-2 text-center" name="angularDisplacement" id="angularDisplacement">
+        <select class="form-control my-2 text-center" name="angularDisplacement" id="angularDisplacement" type="number">
 
         </select>
         <label for="gripValue">Giudizio sulla presa del carico</label>
-        <select class="form-control my-2 text-center" name="gripValue" id="gripValue">
+        <select class="form-control my-2 text-center" name="gripValue" id="gripValue" type="number">
+          
         </select>
         <label for="frequency">Frequenza dei gesti</label>
         <input class="form-control my-2 text-center" name="frequency" id="frequency">
