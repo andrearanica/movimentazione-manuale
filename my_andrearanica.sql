@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 16, 2023 alle 21:38
+-- Creato il: Feb 17, 2023 alle 20:55
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -106,7 +106,9 @@ CREATE TABLE `evaluations` (
 INSERT INTO `evaluations` (`id`, `businessName`, `date`, `realWeight`, `heightFromGround`, `verticalDistance`, `horizontalDistance`, `angularDisplacement`, `gripValue`, `maximumWeight`, `IR`) VALUES
 (1, 'Project Informatica', '0000-00-00', 0, 0, 0, 25, 0, 'Buono', 0, 0),
 (2, 'Sorint', '0000-00-00', 15.3, 50, 0, 25, 0, 'Buono', 0, 0),
-(3, 'pngdm', '0000-00-00', 25, 75, 0, 25, 0, 'Buono', 0, 0);
+(3, 'pngdm', '0000-00-00', 25, 75, 0, 25, 0, 'Buono', 0, 0),
+(4, 'Para', '0000-00-00', 15, 0, 25, 25, 0, 'Buono', 17.71, 0.846979),
+(5, 'Valtrighe', '0000-00-00', 80, 175, 150, 55, 90, 'Scarso', 0.01, 8000);
 
 -- --------------------------------------------------------
 
@@ -410,7 +412,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT per la tabella `evaluations`
 --
 ALTER TABLE `evaluations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `schools`

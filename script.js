@@ -11,7 +11,7 @@ document.getElementById('getAllEvaluationsButton').addEventListener('click', () 
                     <div class="card-body">
                         <h5 class="card-title">${ r.businessName }</h5>
                         <p class="card-text">${ r.date }</p>
-                        ${ r.IR > 1 ? '<div class="alert alert-danger">' : '<div class="alert alert-success">' }<b class="card-text">IR: ${ r.IR }</b></div>
+                        ${ r.IR <= 0.85 ? '<div class="alert alert-success">' : r.IR <= 0.99 ? '<div class="alert alert-warning">' : '<div class="alert alert-danger">' }<b class="card-text">IR: ${ r.IR }</b></div>
                         <button class="btn btn-primary " onclick=showEvaluationInfo(${ r.id }) data-bs-toggle="modal" data-bs-target="#evaluationInfoModal">Visualizza</button>
                     </div>
                 </div>`
@@ -66,9 +66,10 @@ function showEvaluationInfo (id) {
                     <td style="border: 1px solid black; padding: 15px;">${ result.gripValue }</td>
                 </tr>
             </table>
-            </center>
-            ${ result.IR < 1 ? '<div class="alert alert-success">' : '<div class="alert alert-danger">' }<b>Peso massimo consentito: ${ result.maximumWeight }</b><br>
-            <b>Indice di sollevamento: ${ result.IR }</b></div>
+            ${ result.IR <= 0.85 ? '<div class="alert alert-success" style="width: 90%">' : result.IR < 0.99 ? '<div class="alert alert-warning" style="width: 90%">' : '<div class="alert alert-danger" style="width: 90%;">' }<b>Peso massimo consentito: ${ result.maximumWeight }</b><br>
+            <b>Indice di sollevamento: ${ result.IR }</b>
+            ${ result.IR <= 0.85 ? '<p class="my-2">Non sono necessari provvedimenti in ambito</p>' : result.IR < 0.99 ? '<p class="my-2"><b>Livello di attenzione:</b> è necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale</p>' : '<p class="my-2" >Livello di rischio: sono necessari<ul><li>Interventi di prevenzione</li><li>Sorveglianza sanitaria annuale</li><li>Formazione e informazione del personale</li></ul></p>' }
+            </div></center>    
             `
         }
     })

@@ -45,6 +45,11 @@ while ($row = $gripValueReport->fetch_assoc()) {
 }
 
 $maximumWeight = 23 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor;
+
+if ($maximumWeight <= 0) {
+    $maximumWeight = 0.01;
+} 
+
 $IR = floatval(intval($realWeight) / $maximumWeight);
 
 $query = "INSERT INTO evaluations (businessName, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, maximumWeight, IR) VALUES ('$businessName', $date, $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$maximumWeight', '$IR');";
