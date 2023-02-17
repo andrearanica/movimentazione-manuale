@@ -38,7 +38,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         success: (result) => {
             document.getElementById('verticalDistance').innerHTML = ''
             result.map(r => document.getElementById('verticalDistance').innerHTML += `
-            <option value=${ r.dilocation }>${ r.dislocation }</option>
+            <option value=${ r.dislocation }>${ r.dislocation }</option>
             `)
         }
     })
