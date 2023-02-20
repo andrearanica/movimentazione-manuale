@@ -14,6 +14,8 @@ $connection = new mysqli($ip, $user, $password, $db);
 if (isset($_POST['username']) && isset($_POST['username'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+} else {
+    header('Location: index.php?error');
 }
 
 
@@ -28,7 +30,7 @@ if ($result->num_rows > 0) {
     $_SESSION['role'] = $row['role'];
     header('Location: admin.php');
 } else {
-    header('index.php');
+    header('Location: index.php?error');
 }
 
 ?>

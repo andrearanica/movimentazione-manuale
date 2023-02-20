@@ -17,9 +17,21 @@ session_start();
     <div class="container my-5 text-center">
         <h1>Dashboard</h1>
         <?php require('./components/accountInfo.php'); ?>
+
+        <hr />
+
+        <?php require('./components/searchEvaluation.php'); ?>
+
+        <hr />
+
         <btn id="getAllEvaluationsButton" class="btn btn-primary">Tutte le valutazioni</btn>
-        <center><div class="row" id="showAllEvaluations">
-        </div></center>
+        <center>
+            <div class="row" id="showAllEvaluations">
+            </div>
+        </center>
+
+        <hr />
+
         <?php if ($_SESSION['role'] == 1) { require('./components/newEvaluation.php'); } ?>
         <div class="modal fade" id="evaluationInfoModal" tabindex="-1">
             <div class="modal-dialog">
@@ -29,7 +41,7 @@ session_start();
                         <button type="button" id="newEvaluationButtonClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div id="evaluationInfoModalBody">
-                        undefined
+                        Caricamento
                     </div>
                     <div class="modal-footer">
 

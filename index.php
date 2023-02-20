@@ -26,6 +26,11 @@
                             <input class="form-control my-2" type="password" name="password" placeholder="Password">
                             <input class="form-control" type="submit">
                         </form>
+                        <?php
+                        if (isset($_GET['error'])) {
+                          echo '<div class="alert alert-danger my-2"><b>Credenziali sbagliate</b></div>';
+                        }
+                        ?>
                     </div>
                   </div>
                 </div>

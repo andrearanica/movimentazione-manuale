@@ -7,7 +7,13 @@ $db = 'my_andrearanica';
 
 $connection = new mysqli($ip, $user, $password, $db);
 
-$query = 'SELECT * FROM evaluations';
+if (!isset($_GET['businessName'])) {
+    $query = 'SELECT * FROM evaluations';
+} else {
+    $businessName = $_GET['businessName'];
+    $query = "SELECT * FROM evaluations WHERE businessName='$businessName';";
+}
+
 $result = $connection->query($query);
 
 $json = [];
