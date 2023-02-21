@@ -1,7 +1,3 @@
-<button type="button" class="btn btn-success my-2" id="newEvaluationButton" data-bs-toggle="modal" data-bs-target="#newEvaluationModal">
-  Nuova valutazione
-</button>
-
 <div class="modal fade" id="newEvaluationModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">

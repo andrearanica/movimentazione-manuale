@@ -4,6 +4,9 @@
         <button class="btn btn-success">
             <a class="btn btn-success" aria-current="page" data-bs-toggle="modal" data-bs-target="#showAccountModal" id="myAccount">Il mio account</a>
         </button>
+        <button>
+            <a href="admin.php?logout"><img id="logout" height="40" src="./exit.png"></a>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!--<li class="nav-item">

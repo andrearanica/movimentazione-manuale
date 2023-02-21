@@ -1,0 +1,8 @@
+tr, td {
+    border: 1px solid black;
+}
+
+.card {
+    margin-left: 80px;
+    margin-right: 80px;
+}

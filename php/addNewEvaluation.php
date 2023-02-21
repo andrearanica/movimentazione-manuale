@@ -1,7 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-
 $businessName = $_REQUEST['businessName'];
 $date = $_REQUEST['date'];
 $heightFromGround = floatval($_REQUEST['heightFromGround']);
@@ -56,9 +54,6 @@ $query = "INSERT INTO evaluations (businessName, date, realWeight, heightFromGro
 
 $result = $connection->query($query);
 
-$info['maximumWeight'] = $maximumWeight;
-$info['IR'] = $IR;
-
-echo json_encode($info);
+header('Location: ../admin.php?result=success');
 
 ?>
