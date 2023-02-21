@@ -30,9 +30,6 @@ if (isset($_SESSION['username'])) {
     <body>
         <?php require('./components/navbar.php'); ?>
         <div class="my-5 text-center">
-            <button type="button" id="newEvaluationButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Inserisci una nuova valutazione
-            </button>
             <?php require('./components/newEvaluationModal.php'); ?>
             <?php
             
@@ -44,7 +41,11 @@ if (isset($_SESSION['username'])) {
             
             ?>
             <br /><br /><br />
+            <?php require('./components/newUser.php'); ?>
+            <br /><br /><br />
             <?php require('./components/showAllEvaluations.php'); ?>
+            <br /><br /><br />
+            <?php require('./components/accountInfo.php'); ?>
         </div>
         <script src="script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

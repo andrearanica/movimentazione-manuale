@@ -1,3 +1,12 @@
+<?php
+
+if (isset($_SESSION['username'])) {
+  if ($_SESSION['role'] == 1) {
+    header('Location: admin.php');
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,19 +20,11 @@
     <body>
         <div class="container text-center my-5">
             <h1>Movimentazione Manuale dei Carichi</h1>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
                     <div class="modal-body">
-                        <form action="login.php" method="POST">
+                        <form action="./php/login.php" method="POST">
                             <input class="form-control my-2" type="text" name="username" placeholder="Username">
                             <input class="form-control my-2" type="password" name="password" placeholder="Password">
-                            <input class="form-control" type="submit">
+                            <input class="btn btn-primary form-control" type="submit" value="Login">
                         </form>
                         <?php
                         if (isset($_GET['error'])) {
@@ -31,9 +32,6 @@
                         }
                         ?>
                     </div>
-                  </div>
-                </div>
-              </div>
         </div>
         
         <script src="script.js"></script>

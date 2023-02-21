@@ -6,3 +6,8 @@ tr, td {
     margin-left: 80px;
     margin-right: 80px;
 }
+
+a:link, a:hover, a:visited {
+    text-decoration: none;
+    color: white;
+}

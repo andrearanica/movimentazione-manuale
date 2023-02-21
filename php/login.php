@@ -15,7 +15,7 @@ if (isset($_POST['username']) && isset($_POST['username'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 } else {
-    header('Location: index.php?error');
+    header('Location: ../index.php?error');
 }
 
 
@@ -28,9 +28,9 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $row['username'];
     $_SESSION['password'] = $row['password'];
     $_SESSION['role'] = $row['role'];
-    header('Location: admin.php');
+    header('Location: ../admin.php');
 } else {
-    header('Location: index.php?error');
+    header('Location: ../index.php?error');
 }
 
 ?>
