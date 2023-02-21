@@ -1,6 +1,7 @@
 <?php
 
 $businessName = $_REQUEST['businessName'];
+$cost = $_REQUEST['cost'];
 $date = $_REQUEST['date'];
 $heightFromGround = floatval($_REQUEST['heightFromGround']);
 $verticalDistance = floatval($_REQUEST['verticalDistance']);
@@ -50,7 +51,7 @@ if ($maximumWeight <= 0) {
 
 $IR = floatval(intval($realWeight) / $maximumWeight);
 
-$query = "INSERT INTO evaluations (businessName, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, maximumWeight, IR) VALUES ('$businessName', $date, $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$maximumWeight', '$IR');";
+$query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$maximumWeight', '$IR');";
 
 $result = $connection->query($query);
 

@@ -1,6 +1,4 @@
-<button type="button" id="newEvaluationButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Inserisci una nuova valutazione
-            </button>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -11,7 +9,9 @@
                     <div class="modal-body">
                         <form action="./php/addNewEvaluation.php">
                             <label for="businessName">Ragione sociale</label>
-                            <input class="form-control my-2 text-center" name="businessName" id="businessName">  
+                            <input class="form-control my-2 text-center" name="businessName" id="businessName">
+                            <label for="cost">Costo</label>
+                            <input class="form-control my-2 text-center" name="cost" id="cost" type="number">  
                             <label for="date">Data di emissione</label>
                             <input class="form-control my-2 text-center" name="date" id="date" type="date">
                             <label for="realWeight">Peso reale</label>

@@ -8,9 +8,7 @@ if (isset($_GET['logout'])) {
 }
 
 if (isset($_SESSION['username'])) {
-    if ($_SESSION['role'] != 1) {
-        header('Location: index.php');
-    }
+    
 } else {
     header('Location: index.php');
 }
@@ -30,22 +28,19 @@ if (isset($_SESSION['username'])) {
     <body>
         <?php require('./components/navbar.php'); ?>
         <div class="my-5 text-center">
-            <?php require('./components/newEvaluationModal.php'); ?>
+            <?php if ($_SESSION['role'] != 0) { echo '<button type="button" id="newEvaluationButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Inserisci una nuova valutazione</button>'; require('./components/newEvaluationModal.php'); echo '<br /><br />'; } ?>
+            <?php if ($_SESSION['role'] == 1) { echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAccountModal">Aggiungi nuovo utente</button>'; require('./components/newUser.php'); echo '<br /><br />'; } ?>
+            <?php require('./components/showAllEvaluations.php'); ?>
+            <?php require('./components/accountInfo.php'); ?>
             <?php
             
             if (isset($_GET['result'])) { 
                 if ($_GET['result'] == 'success') {
-                    echo '<div class="alert alert-success my-2"><b>Valutazione inserita</b></div>';
+                    echo '<div class="alert alert-success container"><b>Valutazione inserita</b></div>';
                 }
             }
             
             ?>
-            <br /><br /><br />
-            <?php require('./components/newUser.php'); ?>
-            <br /><br /><br />
-            <?php require('./components/showAllEvaluations.php'); ?>
-            <br /><br /><br />
-            <?php require('./components/accountInfo.php'); ?>
         </div>
         <script src="script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

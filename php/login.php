@@ -13,7 +13,7 @@ $connection = new mysqli($ip, $user, $password, $db);
 
 if (isset($_POST['username']) && isset($_POST['username'])) {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = hash('sha256', $_POST['password']);
 } else {
     header('Location: ../index.php?error');
 }

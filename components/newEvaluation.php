@@ -8,6 +8,8 @@
       <div class="modal-body">
         <label for="businessName">Ragione sociale</label>
         <input class="form-control my-2 text-center" name="businessName" id="businessName">  
+        <label></label>
+        <input class="form-control my-2 text-center" name="cost" id="cost">
         <label for="date">Data di emissione</label>
         <input class="form-control my-2 text-center" name="date" id="date" type="date">
         <label for="realWeight">Peso reale</label>

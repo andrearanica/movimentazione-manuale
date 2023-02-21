@@ -1,5 +1,4 @@
 <div>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAccountModal">Aggiungi nuovo utente</button>
 </div>
 <div class="modal fade" id="newAccountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
