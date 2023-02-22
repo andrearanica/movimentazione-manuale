@@ -31,7 +31,7 @@
             $maximumWeight = $row['maximumWeight'];
             $IR = $row['IR'];
             echo "
-            <tr style='border: 1px solid black;'><td>$id</td><td>$businessName</td><td>$date</td><td>$cost</td><td>$realWeight</td><td>$maximumWeight</td><td>$IR</td></tr>
+            <tr style='border: 1px solid black;'><td>$id</td><td>$businessName</td><td>$date</td><td>$cost</td><td>$realWeight</td><td>$maximumWeight</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='./php/printPdf.php?id=$id'>PDF</a></td></tr>
             ";
         }
     }

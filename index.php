@@ -1,9 +1,7 @@
 <?php
 
 if (isset($_SESSION['username'])) {
-  if ($_SESSION['role'] == 1) {
-    header('Location: admin.php');
-  }
+  header('Location: admin.php');
 }
 
 ?>
