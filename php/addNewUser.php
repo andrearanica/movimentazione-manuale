@@ -4,7 +4,7 @@ $name = $_GET['name'];
 $surname = $_GET['surname'];
 $username = $_GET['username'];
 $password = hash('sha256', $_GET['password']);
-$role = $_GET['password'];
+$role = $_GET['role'];
 
 $ip = '127.0.0.1';
 $user = 'root';

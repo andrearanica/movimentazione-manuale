@@ -11,3 +11,7 @@ a:link, a:hover, a:visited {
     text-decoration: none;
     color: white;
 }
+
+.form-control {
+    width: 50%;
+}

@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) {
                         <form action="./php/login.php" method="POST">
                             <input class="form-control my-2" type="text" name="username" placeholder="Username">
                             <input class="form-control my-2" type="password" name="password" placeholder="Password">
-                            <input class="btn btn-primary form-control" type="submit" value="Login">
+                            <input class="btn btn-primary" type="submit" value="Login">
                         </form>
                         <?php
                         if (isset($_GET['error'])) {
