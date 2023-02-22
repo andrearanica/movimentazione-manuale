@@ -9,6 +9,8 @@ $horizontalDistance = floatval($_REQUEST['horizontalDistance']);
 $angularDisplacement = floatval($_REQUEST['angularDisplacement']);
 $gripValue = $_REQUEST['gripValue'];
 $realWeight = floatval($_REQUEST['realWeight']);
+$frequency = $_REQUEST['frequency'];
+$duration = $_REQUEST['duration'];
 
 $ip = '127.0.0.1';
 $user = 'root';
@@ -22,6 +24,7 @@ $verticalDistanceReport    = $connection->query("SELECT factor FROM verticaldist
 $horizontalDistanceReport  = $connection->query("SELECT factor FROM horizontaldistance  WHERE distance='$horizontalDistance';");
 $angularDisplacementReport = $connection->query("SELECT factor FROM angulardisplacement WHERE displacement='$angularDisplacement';");
 $gripValueReport           = $connection->query("SELECT factor FROM gripvalue           WHERE value='$gripValue';");
+$frequencyReport           = $connection->query("SELECT factor FROM frequency           WHERE frequency=$frequency AND duration='$duration';");
 
 while ($row = $heightFromGroundReport->fetch_assoc()) {
     $heightFromGroundFactor = $row['factor'];
@@ -43,7 +46,12 @@ while ($row = $gripValueReport->fetch_assoc()) {
     $gripValueFactor = $row['factor'];
 }
 
-$maximumWeight = 23 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor;
+while ($row = $frequencyReport->fetch_assoc()) {
+    $frequencyFactor = $row['factor'];
+    echo $frequencyFactor;
+}
+
+$maximumWeight = 23 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor * $frequencyFactor;
 
 if ($maximumWeight <= 0) {
     $maximumWeight = 0.01;
@@ -51,10 +59,10 @@ if ($maximumWeight <= 0) {
 
 $IR = floatval(intval($realWeight) / $maximumWeight);
 
-$query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$maximumWeight', '$IR');";
+$query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', '$maximumWeight', '$IR');";
 
 $result = $connection->query($query);
 
-header('Location: ../admin.php?result=success');
+// header('Location: ../admin.php?result=success');
 
 ?>

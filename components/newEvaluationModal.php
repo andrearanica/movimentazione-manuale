@@ -37,7 +37,20 @@
                             
                             </select>
                             <label for="frequency">Frequenza dei gesti</label>
-                            <input class="form-control my-2 text-center" name="frequency" id="frequency">
+                            <select id="frequency" name="frequency">
+                                <option value="0.2">0.20</option>
+                                <option value="1">1</option>
+                                <option value="4">4</option>
+                                <option value="6">6</option>
+                                <option value="9">9</option>
+                                <option value="12">12</option>
+                                <option value="15">15</option>
+                            </select>
+                            <select id="duration" name="duration">
+                                <option value="< 1 ora">< 1 ora</option>
+                                <option value="da 1 a 2 ore">da 1 a 2 ore</option>
+                                <option value="da 2 a 8 ore">da 2 a 8 ore</option>
+                            </select>
                             <input type="submit" class="btn btn-success" value="Salva">
                         </form>
                     </div>

@@ -66,6 +66,13 @@ while($row = $result->fetch_assoc()) {
         $pdf->SetFillColor(204, 51, 0); 
     }
     $pdf->Cell(0, 10, "Indice di sollevamento: $IR", 1, 1, 'C', true);
+    if ($IR <= 0.85) {
+        $pdf->Cell(190, 20, "Situazione accettabile: non e' necessario nessun provvedimento", 1, 1, 'C', true);
+    } else if ($IR <= 0.99) {
+        $pdf->Cell(190, 20, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'C', true);
+    } else {
+        $pdf->Cell(190, 20, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale e la formazione e informazione del personale", 1, 1, 'C', true);
+    }
 }
 
 $pdf->Output();

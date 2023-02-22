@@ -36,7 +36,7 @@ if (isset($_SESSION['username'])) {
             
             if (isset($_GET['result'])) { 
                 if ($_GET['result'] == 'success') {
-                    echo '<div class="alert alert-success container"><b>Valutazione inserita</b></div>';
+                    echo '<div class="alert alert-success container"><b>Valutazione inserita con successo</b></div>';
                 }
             }
             

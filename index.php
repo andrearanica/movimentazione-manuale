@@ -20,8 +20,8 @@ if (isset($_SESSION['username'])) {
             <h1>Movimentazione Manuale dei Carichi</h1>
                     <div class="modal-body">
                         <form action="./php/login.php" method="POST">
-                            <input class="form-control my-2" type="text" name="username" placeholder="Username">
-                            <input class="form-control my-2" type="password" name="password" placeholder="Password">
+                            <input class="form-control my-2 text-center" type="text" name="username" placeholder="Username">
+                            <input class="form-control my-2 text-center" type="password" name="password" placeholder="Password">
                             <input class="btn btn-primary" type="submit" value="Login">
                         </form>
                         <?php

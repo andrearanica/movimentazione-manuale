@@ -19,7 +19,7 @@ if (isset($_GET['table'])) {
         $query = 'SELECT * FROM angulardisplacement;';
     } else if ($_GET['table'] == 'gripValue') {
         $query = 'SELECT * FROM gripvalue;';
-    }
+    } 
 }
 
 $array = [];
