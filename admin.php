@@ -28,7 +28,7 @@ if (isset($_SESSION['username'])) {
     <body>
         <?php require('./components/navbar.php'); ?>
         <div class="my-5 text-center">
-            <?php if ($_SESSION['role'] != 0) { echo '<button type="button" id="newEvaluationButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Inserisci una nuova valutazione</button>'; require('./components/newEvaluationModal.php'); echo '<br /><br />'; } ?>
+            <?php if ($_SESSION['role'] != 0) { echo '<button type="button" id="newEvaluationButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Inserisci una nuova valutazione</button>'; require('./components/newEvaluationModal.php'); } ?>
             <?php if ($_SESSION['role'] == 1) { echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAccountModal">Aggiungi nuovo utente</button>'; require('./components/newUser.php'); echo '<br /><br />'; } ?>
             <?php require('./components/showAllEvaluations.php'); ?>
             <?php require('./components/accountInfo.php'); ?>
@@ -37,6 +37,12 @@ if (isset($_SESSION['username'])) {
             if (isset($_GET['result'])) { 
                 if ($_GET['result'] == 'success') {
                     echo '<div class="alert alert-success container"><b>Valutazione inserita con successo</b></div>';
+                }
+            }
+
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'data') {
+                    echo '<div class="alert alert-danger container"><b>Controlla </b> che i dati inseriti rispettino i seguenti criteri: <br />Di aver inserito tutti i campi<br />Carichi di peso superiore a 3 kg<br />Carichi di peso inferiori a 30 kg</div>';
                 }
             }
             

@@ -9,49 +9,53 @@
                     <div class="modal-body">
                         <form action="./php/addNewEvaluation.php">
                             <label for="businessName">Ragione sociale</label>
-                            <input class="form-control my-2 text-center" name="businessName" id="businessName">
+                            <input required class="form-control my-2 text-center" name="businessName" id="businessName">
                             <label for="cost">Costo</label>
-                            <input class="form-control my-2 text-center" name="cost" id="cost" type="number">  
+                            <input required class="form-control my-2 text-center" name="cost" id="cost" type="number">  
                             <label for="date">Data di emissione</label>
-                            <input class="form-control my-2 text-center" name="date" id="date" type="date">
+                            <input required class="form-control my-2 text-center" name="date" id="date" type="date">
                             <label for="realWeight">Peso reale</label>
-                            <input class="form-control my-2 text-center" name="realWeight" id="realWeight" type="number">
+                            <input required class="form-control my-2 text-center" name="realWeight" id="realWeight" type="number">
                             <label for="heightFromGround">Altezza da terra delle mani all'inizio del sollevamento</label>
-                            <select class="form-control my-2 text-center" name="heightFromGround" id="heightFromGround" type="number">
+                            <select required class="form-control my-2 text-center" name="heightFromGround" id="heightFromGround" type="number">
                                 
                             </select>
                             <label for="verticalDistance">Distanza verticale di spostamento del peso fra inizio e fine sollevamento</label>
-                            <select class="form-control my-2 text-center" name="verticalDistance" id="verticalDistance" type="number">
+                            <select required class="form-control my-2 text-center" name="verticalDistance" id="verticalDistance" type="number">
 
                             </select>
                             <label for="horizontalDistance">Distanza orizzontale tra mani e punto di mezzo delle caviglie</label>
-                            <select class="form-control my-2 text-center" name="horizontalDistance" id="horizontalDistance" type="number">
+                            <select required class="form-control my-2 text-center" name="horizontalDistance" id="horizontalDistance" type="number">
 
                             </select>
                             <label for="angularDisplacement">Dislocazione angolare del peso in gradi</label>
-                            <select class="form-control my-2 text-center" name="angularDisplacement" id="angularDisplacement" type="number">
+                            <select required class="form-control my-2 text-center" name="angularDisplacement" id="angularDisplacement" type="number">
 
                             </select>
                             <label for="gripValue">Giudizio sulla presa del carico</label>
-                            <select class="form-control my-2 text-center" name="gripValue" id="gripValue" type="number">
+                            <select required class="form-control my-2 text-center" name="gripValue" id="gripValue" type="number">
                             
                             </select>
                             <label for="frequency">Frequenza dei gesti</label>
-                            <select id="frequency" name="frequency">
-                                <option value="0.2">0.20</option>
-                                <option value="1">1</option>
-                                <option value="4">4</option>
-                                <option value="6">6</option>
-                                <option value="9">9</option>
-                                <option value="12">12</option>
-                                <option value="15">15</option>
+                            <select required id="frequency" name="frequency" class="form-control my-2 text-center">
+                                <option value="0.2">0.20 gesti/minuto</option>
+                                <option value="1">1 gesti/minuto</option>
+                                <option value="4">4 gesti/minuto</option>
+                                <option value="6">6 gesti/minuto</option>
+                                <option value="9">9 gesti/minuto</option>
+                                <option value="12">12 gesti/minuto</option>
+                                <option value="15">15 gesti/minuto</option>
                             </select>
-                            <select id="duration" name="duration">
+                            <select required id="duration" name="duration" class="form-control my-2 text-center">
                                 <option value="< 1 ora">< 1 ora</option>
                                 <option value="da 1 a 2 ore">da 1 a 2 ore</option>
                                 <option value="da 2 a 8 ore">da 2 a 8 ore</option>
                             </select>
-                            <input type="submit" class="btn btn-success" value="Salva">
+                            <label for="oneHand">Sollevamento con una sola mano?</label>
+                            <input type="checkbox" id="oneHand" name="oneHand"><br />
+                            <label for="twoPeople">Sollevamento fatto da due persone?</label>
+                            <input type="checkbox" id="twoPeople" name="twoPeople"><br />
+                            <br /><input type="submit" class="btn btn-success" value="Salva">
                         </form>
                     </div>
                     </div>

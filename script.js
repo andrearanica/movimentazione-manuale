@@ -44,3 +44,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         }
     })
 })
+
+document.getElementById('oneHand').onmouseover = () => {
+    
+}

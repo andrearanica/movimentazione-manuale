@@ -12,6 +12,11 @@ $realWeight = floatval($_REQUEST['realWeight']);
 $frequency = $_REQUEST['frequency'];
 $duration = $_REQUEST['duration'];
 
+if ($realWeight < 3 || $realWeight > 30 || $businessName == '' || $cost == '') {
+    header('Location: ../admin.php?error=data');
+    die('Errore');
+}
+
 $ip = '127.0.0.1';
 $user = 'root';
 $password = '';
@@ -24,7 +29,7 @@ $verticalDistanceReport    = $connection->query("SELECT factor FROM verticaldist
 $horizontalDistanceReport  = $connection->query("SELECT factor FROM horizontaldistance  WHERE distance='$horizontalDistance';");
 $angularDisplacementReport = $connection->query("SELECT factor FROM angulardisplacement WHERE displacement='$angularDisplacement';");
 $gripValueReport           = $connection->query("SELECT factor FROM gripvalue           WHERE value='$gripValue';");
-$frequencyReport           = $connection->query("SELECT factor FROM frequency           WHERE frequency=$frequency AND duration='$duration';");
+$frequencyReport           = $connection->query("SELECT factor FROM frequency           WHERE duration='$duration' AND frequency=$frequency;");
 
 while ($row = $heightFromGroundReport->fetch_assoc()) {
     $heightFromGroundFactor = $row['factor'];
@@ -46,12 +51,42 @@ while ($row = $gripValueReport->fetch_assoc()) {
     $gripValueFactor = $row['factor'];
 }
 
+$frequencyFactor = 1;
 while ($row = $frequencyReport->fetch_assoc()) {
     $frequencyFactor = $row['factor'];
-    echo $frequencyFactor;
 }
 
-$maximumWeight = 23 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor * $frequencyFactor;
+if (isset($_GET['oneHand'])) {
+    $oneHand = $_GET['oneHand'];
+} else {
+    $oneHand = 'off';
+}
+$oneHandFactor = 1;
+
+if (isset($_GET['twoPeople'])) {
+    $twoPeople = $_GET['twoPeople'];
+} else {
+    $twoPeople = 'off';
+}
+$twoPeopleFactor = 1;
+
+if ($oneHand == 'on') {
+    $oneHand = 1;
+    $oneHandFactor = 0.6;    
+} else {
+    $oneHand = 0;
+}
+
+  // )
+
+if ($twoPeople == 'on') {
+    $twoPeople = 1;
+    $twoPeopleFactor = 0.85 / 2;
+} else {
+    $twoPeople = 0;
+}
+
+$maximumWeight = 23 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor * $frequencyFactor * $oneHandFactor * $twoPeopleFactor;
 
 if ($maximumWeight <= 0) {
     $maximumWeight = 0.01;
@@ -59,10 +94,10 @@ if ($maximumWeight <= 0) {
 
 $IR = floatval(intval($realWeight) / $maximumWeight);
 
-$query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', '$maximumWeight', '$IR');";
+$query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', $oneHand, $twoPeople, '$maximumWeight', '$IR');";
 
 $result = $connection->query($query);
 
-// header('Location: ../admin.php?result=success');
+header('Location: ../admin.php?result=success');
 
 ?>
