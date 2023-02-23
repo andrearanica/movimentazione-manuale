@@ -27,11 +27,13 @@ if (isset($_SESSION['username'])) {
     </head>
     <body>
         <?php require('./components/navbar.php'); ?>
-        <div class="my-5 text-center">
+        <center><div class="my-5 text-center">
+            <button class="btn btn-primary" id="search" data-bs-toggle="modal" data-bs-target="#searchEvaluation">Cerca per ragione sociale</button>
             <?php if ($_SESSION['role'] != 0) { echo '<button type="button" id="newEvaluationButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Inserisci una nuova valutazione</button>'; require('./components/newEvaluationModal.php'); } ?>
             <?php if ($_SESSION['role'] == 1) { echo '<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAccountModal">Aggiungi nuovo utente</button>'; require('./components/newUser.php'); echo '<br /><br />'; } ?>
             <?php require('./components/showAllEvaluations.php'); ?>
             <?php require('./components/accountInfo.php'); ?>
+            <?php require('./components/searchEvaluation.php'); ?>
             <?php
             
             if (isset($_GET['result'])) { 
@@ -47,7 +49,7 @@ if (isset($_SESSION['username'])) {
             }
             
             ?>
-        </div>
+        </div></center>
         <script src="script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

@@ -48,3 +48,30 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
 document.getElementById('oneHand').onmouseover = () => {
     
 }
+
+document.getElementById('searchEvaluationButton').onclick = () => {
+    $.ajax({
+        url: './ajax/getEvaluation.php',
+        dataType: 'json',
+        data: {
+            businessName: document.getElementById('searchBusinessName').value
+        },
+        success: (result) => {
+            document.getElementById('evaluation').innerHTML = ''
+            if (result.length == 0) {
+                document.getElementById('evaluation').innerHTML = '<div class="alert alert-danger text-center my-2"><b>Non è stata trovata nessuna valutazione per questa ragione sociale</b></div>'
+            }
+            result.map(r => {
+                document.getElementById('evaluation').innerHTML += `
+                <div class="card my-2" style="width: 18rem; margin-bottom: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">${ r.businessName }</h5>
+                        <p class="card-text">Indice di sollevamento: ${ r.IR }</p>
+                        <a href="./php/printPdf.php?id=${ r.id }"><button class="btn btn-primary">Stampa PDF</button></a>
+                    </div>
+                </div>
+                `
+            })
+        } 
+    })
+}

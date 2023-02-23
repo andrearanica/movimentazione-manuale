@@ -38,7 +38,7 @@
                             </select>
                             <label for="frequency">Frequenza dei gesti</label>
                             <select required id="frequency" name="frequency" class="form-control my-2 text-center">
-                                <option value="0.2">0.20 gesti/minuto</option>
+                                <!--<option value="0.2">0.20 gesti/minuto</option>-->
                                 <option value="1">1 gesti/minuto</option>
                                 <option value="4">4 gesti/minuto</option>
                                 <option value="6">6 gesti/minuto</option>

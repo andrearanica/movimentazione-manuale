@@ -1,4 +1,4 @@
-<div id="table" class="card my-2">
+<div id="table" class="card text-center my-2">
     <?php
 
     $ip = '127.0.0.1';

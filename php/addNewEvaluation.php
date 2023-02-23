@@ -86,7 +86,7 @@ if ($twoPeople == 'on') {
     $twoPeople = 0;
 }
 
-$maximumWeight = 23 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor * $frequencyFactor * $oneHandFactor * $twoPeopleFactor;
+$maximumWeight = 20 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor * $frequencyFactor * $oneHandFactor * $twoPeopleFactor;
 
 if ($maximumWeight <= 0) {
     $maximumWeight = 0.01;
