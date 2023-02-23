@@ -34,6 +34,7 @@ if (isset($_SESSION['username'])) {
             <?php require('./components/showAllEvaluations.php'); ?>
             <?php require('./components/accountInfo.php'); ?>
             <?php require('./components/searchEvaluation.php'); ?>
+            <?php require('./components/modifyEvaluationModal.php'); ?>
             <?php
             
             if (isset($_GET['result'])) { 
