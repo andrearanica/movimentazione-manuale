@@ -75,3 +75,4 @@ document.getElementById('searchEvaluationButton').onclick = () => {
         } 
     })
 }
+

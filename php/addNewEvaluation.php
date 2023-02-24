@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+session_start();
+
 $businessName = $_REQUEST['businessName'];
 $cost = $_REQUEST['cost'];
 $date = $_REQUEST['date'];
@@ -94,7 +97,9 @@ if ($maximumWeight <= 0) {
 
 $IR = floatval(intval($realWeight) / $maximumWeight);
 
-$query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', $oneHand, $twoPeople, '$maximumWeight', '$IR');";
+$author = $_SESSION['id'];
+
+$query = "INSERT INTO evaluations (businessName, author, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$businessName', $author, $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', $oneHand, $twoPeople, '$maximumWeight', '$IR');";
 
 $result = $connection->query($query);
 

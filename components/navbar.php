@@ -18,6 +18,15 @@
     </div>
   </div>
 </nav>
+<?php
+
+if ($_SESSION['role'] != 0) {
+  /*echo '<div class="bg-dark menu">
+    Ciao
+  </div>';*/
+}
+
+?>
 <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand">Benvenuto, <?php echo $_SESSION['name_surname'] ?></a>

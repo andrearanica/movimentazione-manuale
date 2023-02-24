@@ -37,18 +37,6 @@ if (isset($_SESSION['username'])) {
             <?php require('./components/modifyEvaluationModal.php'); ?>
             <?php
             
-            if (isset($_GET['result'])) { 
-                if ($_GET['result'] == 'success') {
-                    echo '<div class="alert alert-success container"><b>Valutazione inserita con successo</b></div>';
-                }
-            }
-
-            if (isset($_GET['error'])) {
-                if ($_GET['error'] == 'data') {
-                    echo '<div class="alert alert-danger container"><b>Controlla </b> che i dati inseriti rispettino i seguenti criteri: <br />Di aver inserito tutti i campi<br />Carichi di peso superiore a 3 kg<br />Carichi di peso inferiori a 30 kg</div>';
-                }
-            }
-            
             ?>
         </div></center>
         <script src="script.js"></script>

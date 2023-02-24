@@ -24,6 +24,7 @@ $result = $connection->query($query);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
+    $_SESSION['id'] = $row['id'];
     $_SESSION['name_surname'] = $row['name_surname'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['password'] = $row['password'];
