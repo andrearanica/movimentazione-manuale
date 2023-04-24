@@ -9,7 +9,6 @@ class AjaxController {
         $request = $_GET['request'];
         switch ($request) {
             case 'getEvaluation': 
-                $businessName = $_REQUEST['businessName'];
 
                 $ip = '127.0.0.1';
                 $user = 'root';
@@ -17,7 +16,13 @@ class AjaxController {
                 $db = 'my_andrearanica';
 
                 $connection = new mysqli($ip, $user, $password, $db);
-                $query = "SELECT * FROM evaluations WHERE businessName='$businessName';";
+                if (isset($_REQUEST['id'])) {
+                    $id = $_REQUEST['id'];
+                    $query = "SELECT * FROM evaluations WHERE id='$id';";
+                } else {
+                    $businessName = $_REQUEST['businessName'];
+                    $query = "SELECT * FROM evaluations WHERE businessName='$businessName';";
+                }
                 $result = $connection->query($query);
 
                 $json = [];

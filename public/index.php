@@ -32,6 +32,9 @@ switch ($request) {
     case 'newEvaluation':
         $evaluationController->NewEvaluation();
         break;
+    case 'editEvaluation':
+        $evaluationController->EditEvaluation();
+        break;
     case 'printPdf':
         $evaluationController->PrintPdf();
         break;

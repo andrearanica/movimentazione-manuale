@@ -214,6 +214,20 @@ class EvaluationController {
 
         $pdf->Output();
     }
+    public function EditEvaluation () {
+        $id = $_REQUEST['id'];
+        $ip = '127.0.0.1';
+        $user = 'root';
+        $password = '';
+        $db = 'my_andrearanica';
+
+        $connection = new \mysqli($ip, $user, $password, $db);
+
+        $query = "UPDATE evaluations SET valid=0 WHERE id='$id'";
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        header('Location: dashboard');
+    }
 }
 
 ?>

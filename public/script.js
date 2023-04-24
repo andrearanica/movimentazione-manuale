@@ -65,6 +65,8 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
     })
 })
 
+document.getElementById('date').value = new Date().getDate() 
+
 document.getElementById('oneHand').onmouseover = () => {
     
 }
@@ -93,7 +95,37 @@ document.getElementById('searchEvaluationButton').onclick = () => {
                 </div>
                 `
             })
-        } 
+        } ,
+        error: data => {
+            console.log(data)
+        }
     })
 }
 
+function fillForm (id) {
+    $.ajax({
+        url: 'ajax?request=getEvaluation',
+        dataType: 'json',
+        data: {
+            id: id
+        },
+        success: data => {
+            console.log(data)
+            data = data[0]
+            document.getElementById('edit-id').value = data.id
+            document.getElementById('edit-businessName').value = data.businessName
+            document.getElementById('edit-cost').value = data.cost
+            document.getElementById('edit-date').value = data.date
+            document.getElementById('edit-realWeight').value = data.realWeight
+            document.getElementById('edit-heightFromGround').value = data.heightFromGround
+            document.getElementById('edit-verticalDistance').value = data.verticalDistance
+            document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
+            document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
+            document.getElementById('edit-gripValue').value = data.gripValue
+            document.getElementById('edit-frequency').value = data.frequency
+        },
+        error: data => {
+            console.log(data)
+        }
+    })
+}

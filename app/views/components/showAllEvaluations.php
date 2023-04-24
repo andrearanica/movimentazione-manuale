@@ -48,11 +48,11 @@
             }
             if ($maximumWeight != -1) {
                 echo "
-                <tr style='border: 1px solid black;'><td><img width='40' src='./pencil.jpg'></td><td>$id</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                <tr style='border: 1px solid black;'><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
                 ";
             } else {
                 echo "
-                <tr style='border: 1px solid black;'><td><img width='40' src='./pencil.jpg'></td><td>$id</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                <tr style='border: 1px solid black;'><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
                 ";
             }
             

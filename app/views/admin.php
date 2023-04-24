@@ -30,7 +30,8 @@ if (isset($_SESSION['username'])) {
             <?php if ($_SESSION['role'] == 1) { require('../app/views/components/newUser.php'); } ?>
             <?php if ($_SESSION['role'] != 0) { require('../app/views/components/searchEvaluation.php'); } ?>
             <?php require('../app/views/components/showAllEvaluations.php'); ?>
-            <?php require('../app/views/components/modifyEvaluationModal.php'); ?>
+            <?php require('../app/views/components/editEvaluationModal.php'); ?>
+            <?php /*require('')*/ ?>
             <?php
             if (isset($_GET['error'])){
                 if ($_GET['error'] == 'none') {
