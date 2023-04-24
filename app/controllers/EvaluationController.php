@@ -95,10 +95,12 @@ class EvaluationController {
         $maximumWeight = 20 * $heightFromGroundFactor * $verticalDistanceFactor * $horizontalDistanceFactor * $angularDisplacementFactor * $gripValueFactor * $frequencyFactor * $oneHandFactor * $twoPeopleFactor;
 
         if ($maximumWeight <= 0) {
-            $maximumWeight = 0.01;
-        } 
+            $maximumWeight = -1;
+            $IR = -1;
+        } else {
+            $IR = floatval(intval($realWeight) / $maximumWeight);
+        }
 
-        $IR = floatval(intval($realWeight) / $maximumWeight);
 
         $author = $_SESSION['id'];
 
@@ -106,7 +108,7 @@ class EvaluationController {
 
         $result = $connection->query($query);
 
-        header('Location: dashboard');
+        header('Location: dashboard?success');
     }
     public function PrintPdf () {
         ini_set('display_errors', 1);
@@ -226,7 +228,26 @@ class EvaluationController {
         $query = "UPDATE evaluations SET valid=0 WHERE id='$id'";
         $stmt = $connection->prepare($query);
         $stmt->execute();
-        header('Location: dashboard');
+
+        $this->NewEvaluation();
+
+        header('Location: dashboard?success');
+    }
+    public function DeleteEvaluation () {
+        if (isset($_SESSION['username'])) {
+            $id = $_REQUEST['id'];
+            $ip = '127.0.0.1';
+            $user = 'root';
+            $password = '';
+            $db = 'my_andrearanica';
+    
+            $connection = new \mysqli($ip, $user, $password, $db);
+    
+            $query = "DELETE FROM evaluations WHERE id='$id';";
+            $stmt = $connection->prepare($query);
+            $stmt->execute();
+            header('Location: dashboard?success');
+        }
     }
 }
 

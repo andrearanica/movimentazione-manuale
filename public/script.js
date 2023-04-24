@@ -104,13 +104,76 @@ document.getElementById('searchEvaluationButton').onclick = () => {
 
 function fillForm (id) {
     $.ajax({
+        url: 'ajax',
+        data: {
+            request: 'tableInfo',
+            table: 'heightFromGround'
+        },
+        dataType: 'json',
+        success: (result) => {
+            document.getElementById('edit-heightFromGround').innerHTML = ''
+            result.map(r => document.getElementById('edit-heightFromGround').innerHTML += `
+            <option value=${ r.height }>${ r.height }</option>
+            `)
+        }
+    })
+    $.ajax({
+        url: 'ajax',
+        data: {
+            request: 'tableInfo',
+            table: 'verticalDistance'
+        },
+        dataType: 'json',
+        success: (result) => {
+            document.getElementById('edit-verticalDistance').innerHTML = ''
+            result.map(r => document.getElementById('edit-verticalDistance').innerHTML += `
+            <option value=${ r.dislocation }>${ r.dislocation }</option>
+            `)
+        }
+    })
+    $.ajax({
+        url: 'ajax',
+        data: {
+            request: 'tableInfo',
+            table: 'horizontalDistance'
+        },
+        dataType: 'json',
+        success: (result) => {
+            document.getElementById('edit-horizontalDistance').innerHTML = ''
+            result.map(r => document.getElementById('edit-horizontalDistance').innerHTML += `<option value=${ r.distance }>${ r.distance }</option>`)
+        } 
+    })
+    $.ajax({
+        url: 'ajax',
+        data: {
+            request: 'tableInfo',
+            table: 'angularDisplacement'
+        },
+        dataType: 'json',
+        success: (result) => {
+            document.getElementById('edit-angularDisplacement').innerHTML = ''
+            result.map(r => document.getElementById('edit-angularDisplacement').innerHTML += `<option value=${ r.displacement }>${ r.displacement }</option>`)
+        }
+    })
+    $.ajax({
+        url: 'ajax',
+        data: {
+            request: 'tableInfo',
+            table: 'gripValue'
+        },
+        dataType: 'json',
+        success: (result) => {
+            document.getElementById('edit-gripValue').innerHTML = ''
+            result.map(r => document.getElementById('edit-gripValue').innerHTML += `<option value=${ r.value }>${ r.value }</option>`)
+        }
+    })
+    $.ajax({
         url: 'ajax?request=getEvaluation',
         dataType: 'json',
         data: {
             id: id
         },
         success: data => {
-            console.log(data)
             data = data[0]
             document.getElementById('edit-id').value = data.id
             document.getElementById('edit-businessName').value = data.businessName
@@ -118,11 +181,10 @@ function fillForm (id) {
             document.getElementById('edit-date').value = data.date
             document.getElementById('edit-realWeight').value = data.realWeight
             document.getElementById('edit-heightFromGround').value = data.heightFromGround
-            document.getElementById('edit-verticalDistance').value = data.verticalDistance
+            document.getElementById('edit-verticalDistance').verticalDistance = data.verticalDistance
             document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
             document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
             document.getElementById('edit-gripValue').value = data.gripValue
-            document.getElementById('edit-frequency').value = data.frequency
         },
         error: data => {
             console.log(data)

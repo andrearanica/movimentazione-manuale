@@ -33,10 +33,8 @@ if (isset($_SESSION['username'])) {
             <?php require('../app/views/components/editEvaluationModal.php'); ?>
             <?php /*require('')*/ ?>
             <?php
-            if (isset($_GET['error'])){
-                if ($_GET['error'] == 'none') {
-                    echo '<div class="container alert alert-success"><b>Operazione avvenuta con successo</b></div>';
-                }
+            if (isset($_GET['success'])){
+                echo '<div class="container alert alert-success"><b>Operazione avvenuta con successo</b></div>';
             }            
             ?>
         </div></center>

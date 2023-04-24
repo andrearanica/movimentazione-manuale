@@ -35,6 +35,9 @@ switch ($request) {
     case 'editEvaluation':
         $evaluationController->EditEvaluation();
         break;
+    case 'deleteEvaluation':
+        $evaluationController->DeleteEvaluation();
+        break;
     case 'printPdf':
         $evaluationController->PrintPdf();
         break;

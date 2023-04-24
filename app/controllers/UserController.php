@@ -56,7 +56,7 @@ class UserController {
 
         $connection->query($query);
 
-        header('Location: dashboard?error=none');
+        header('Location: dashboard?success');
     }
 }
 
