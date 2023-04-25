@@ -26,27 +26,27 @@ if (isset($_SESSION['username'])) {
         <div class='container text-center my-5'>
             <h1>Movimentazione Manuale dei Carichi</h1>
                 <form action='loginHandler' method='POST'>
-                    <input class='form-control my-2 text-center' type='text' name='username' placeholder='Username'>
-                    <input class='form-control my-2 text-center' type='password' name='password' placeholder='Password'>
-                    <input class='btn btn-primary' type='submit' value='Login'>
+                    <input class='form-control my-2 text-center' type='text' name='username' placeholder='Username' required>
+                    <input class='form-control my-2 text-center' type='password' name='password' placeholder='Password' required>
+                    <input class='btn btn-primary my-2' type='submit' value='Login'>
                 </form>
                 <?php
                 if (isset($_GET['error'])) {
-                    echo '<div class="container my-4 alert alert-danger">Credenziali sbagliate</div>';
+                    echo "<div class='container my-4 alert alert-danger'>Credenziali sbagliate</div>";
                 }
                 ?>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#info-modal">
+            <button type='button' class='btn btn-primary my-2' data-bs-toggle='modal' data-bs-target='#info-modal'>
                 Aiuto
             </button>
 
-            <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Aiuto</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class='modal fade' id='info-modal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Aiuto</h1>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
-                        <div class="modal-body">
+                        <div class='modal-body'>
                             <h4>Account</h4>
                             <p>Un account può appartenere a un ruolo fra:</p>
                             <ul>

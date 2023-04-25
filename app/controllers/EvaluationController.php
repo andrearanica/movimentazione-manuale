@@ -35,7 +35,7 @@ class EvaluationController {
         $horizontalDistanceReport  = $connection->query("SELECT factor FROM horizontaldistance  WHERE distance='$horizontalDistance';");
         $angularDisplacementReport = $connection->query("SELECT factor FROM angulardisplacement WHERE displacement='$angularDisplacement';");
         $gripValueReport           = $connection->query("SELECT factor FROM gripvalue           WHERE value='$gripValue';");
-        $frequencyReport           = $connection->query("SELECT factor FROM frequency           WHERE duration='$duration' AND frequency=$frequency;");
+        $frequencyReport           = $connection->query("SELECT factor FROM frequency           WHERE CAST(frequency AS DECIMAL)=CAST($frequency AS DECIMAL) AND duration='$duration';");
 
         while ($row = $heightFromGroundReport->fetch_assoc()) {
             $heightFromGroundFactor = $row['factor'];
@@ -101,10 +101,12 @@ class EvaluationController {
             $IR = floatval(intval($realWeight) / $maximumWeight);
         }
 
+        echo "$heightFromGroundFactor $verticalDistanceFactor $horizontalDistanceFactor $angularDisplacementFactor $gripValueFactor $frequencyFactor";
+
 
         $author = $_SESSION['id'];
 
-        $query = "INSERT INTO evaluations (businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', $oneHand, $twoPeople, '$maximumWeight', '$IR');";
+        $query = "INSERT INTO evaluations (author, businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$author', '$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', $oneHand, $twoPeople, '$maximumWeight', '$IR');";
 
         $result = $connection->query($query);
 
@@ -146,6 +148,11 @@ class EvaluationController {
             $maximumWeight = $row['maximumWeight']; 
             $realWeight = $row['realWeight'];
             $IR = $row['IR'];
+
+            if (!$row['valid']) {
+                $pdf->SetFillColor(204, 51, 0); 
+                $pdf->Cell(190, 10, "Valutazione scaduta", 1, 1, 'C', true);
+            }
 
             $pdf->Cell(190, 40, "Ragione sociale: $businessName", 1, 1, 'C');
             $pdf->SetFont('Arial', 'B', 14);

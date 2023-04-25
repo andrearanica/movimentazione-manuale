@@ -21,7 +21,13 @@ class AjaxController {
                     $query = "SELECT * FROM evaluations WHERE id='$id';";
                 } else {
                     $businessName = $_REQUEST['businessName'];
-                    $query = "SELECT * FROM evaluations WHERE businessName='$businessName';";
+                    if ($_SESSION['role'] == 1) {
+                        $query = "SELECT * FROM evaluations WHERE businessName='$businessName';";
+                    } else {
+                        $id = $_SESSION['id'];
+                        $query = "SELECT * FROM evaluations WHERE businessName='$businessName' AND author='$id';";
+                    }
+                    
                 }
                 $result = $connection->query($query);
 

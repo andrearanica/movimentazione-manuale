@@ -71,7 +71,8 @@ document.getElementById('oneHand').onmouseover = () => {
     
 }
 
-document.getElementById('searchEvaluationButton').onclick = () => {
+document.getElementById('searchEvaluationForm').addEventListener('submit', (e) => {
+    e.preventDefault();
     $.ajax({
         url: 'ajax',
         dataType: 'json',
@@ -100,7 +101,7 @@ document.getElementById('searchEvaluationButton').onclick = () => {
             console.log(data)
         }
     })
-}
+})
 
 function fillForm (id) {
     $.ajax({
@@ -191,3 +192,6 @@ function fillForm (id) {
         }
     })
 }
+
+document.getElementById('date').value = Date.now()
+document.getElementById('edit-date').value = Date.now()

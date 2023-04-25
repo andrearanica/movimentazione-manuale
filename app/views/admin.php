@@ -29,6 +29,7 @@ if (isset($_SESSION['username'])) {
             <?php if ($_SESSION['role'] != 0) { require('../app/views/components/newEvaluationModal.php'); } ?>
             <?php if ($_SESSION['role'] == 1) { require('../app/views/components/newUser.php'); } ?>
             <?php if ($_SESSION['role'] != 0) { require('../app/views/components/searchEvaluation.php'); } ?>
+            <hr>
             <?php require('../app/views/components/showAllEvaluations.php'); ?>
             <?php require('../app/views/components/editEvaluationModal.php'); ?>
             <?php /*require('')*/ ?>
@@ -37,6 +38,8 @@ if (isset($_SESSION['username'])) {
                 echo '<div class="container alert alert-success"><b>Operazione avvenuta con successo</b></div>';
             }            
             ?>
+            <hr>
+            <?php if ($_SESSION['role'] == 1) { require('../app/views/components/showUserStats.php'); } ?>
         </div></center>
         <script src="script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
