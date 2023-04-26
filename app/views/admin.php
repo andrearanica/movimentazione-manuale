@@ -36,7 +36,7 @@ if (isset($_SESSION['username'])) {
             <?php
             if (isset($_GET['success'])){
                 echo '<div class="container alert alert-success"><b>Operazione eseguita con successo</b></div>';
-            }            
+            }           
             ?>
             <hr>
             <?php if ($_SESSION['role'] == 1) { require('../app/views/components/showUserStats.php'); } ?>

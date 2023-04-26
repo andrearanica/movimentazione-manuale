@@ -24,8 +24,8 @@ class EvaluationController {
         }
 
         $ip = '127.0.0.1';
-        $user = 'root';
-        $password = '';
+        $user = getenv('USERNAME');
+        $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
 
         $connection = new \mysqli($ip, $user, $password, $db);
@@ -117,8 +117,8 @@ class EvaluationController {
         require('../app/fpdf/fpdf.php');
 
         $ip = '127.0.0.1';
-        $user = 'root';
-        $password = '';
+        $user = getenv('USERNAME');
+        $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
         $id = $_REQUEST['id'];
 
@@ -226,8 +226,8 @@ class EvaluationController {
     public function EditEvaluation () {
         $id = $_REQUEST['id'];
         $ip = '127.0.0.1';
-        $user = 'root';
-        $password = '';
+        $user = getenv('USERNAME');
+        $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
 
         $connection = new \mysqli($ip, $user, $password, $db);
@@ -244,8 +244,8 @@ class EvaluationController {
         if (isset($_SESSION['username'])) {
             $id = $_REQUEST['id'];
             $ip = '127.0.0.1';
-            $user = 'root';
-            $password = '';
+            $user = getenv('USERNAME');
+            $password = getenv('PASSWORD');
             $db = 'my_andrearanica';
     
             $connection = new \mysqli($ip, $user, $password, $db);

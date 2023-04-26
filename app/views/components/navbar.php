@@ -10,7 +10,7 @@
           <a class='nav-link active' aria-current='page' href='#' data-bs-toggle='modal' data-bs-target='#showAccountModal'>Il mio account</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link active' data-bs-toggle='modal' data-bs-target='#helpModal'>Aiuto</a>
+          <a class='nav-link active' aria-current='page' href='#' data-bs-toggle='modal' data-bs-target='#helpModal'>Aiuto</a>
         </li>
         <li class='nav-item'>
           <a class='nav-link active' href='?logout'>Logout</a>

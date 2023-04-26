@@ -9,8 +9,8 @@ class UserController {
         ini_set('display_errors', 1);
 
         $ip = '127.0.0.1';
-        $user = 'root';
-        $password = '';
+        $user = getenv('USERNAME');
+        $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
 
         $connection = new mysqli($ip, $user, $password, $db);
@@ -46,8 +46,8 @@ class UserController {
         $role = $_GET['role'];
 
         $ip = '127.0.0.1';
-        $user = 'root';
-        $pwd = '';
+        $user = getenv('USERNAME');
+        $pwd = getenv('PASSWORD');
         $db = 'my_andrearanica';
 
         $connection = new mysqli($ip, $user, $pwd, $db);
