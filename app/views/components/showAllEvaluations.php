@@ -11,12 +11,12 @@
     $id = $_SESSION['id'];
 
     if ($_SESSION['role'] == 1) {
-        $query = 'SELECT * FROM evaluations ORDER BY businessName, valid DESC, id';
+        $query = 'SELECT * FROM evaluations JOIN users ON evaluations.author=users.id ORDER BY businessName, valid DESC, evaluation_id';
     } else if ($_SESSION['role'] == 2) {
-        $query = "SELECT * FROM evaluations WHERE author=$id ORDER BY businessName, valid DESC, id;";
+        $query = "SELECT * FROM evaluations JOIN users ON evaluations.author=users.id WHERE author=$id ORDER BY businessName, valid DESC, evaluation_id;";
     } else if ($_SESSION['role'] == 0) {
         $username = $_SESSION['username'];
-        $query = "SELECT * FROM evaluations WHERE businessName='$username' ORDER BY businessName;";
+        $query = "SELECT * FROM evaluations JOIN users ON evaluations.author=users.id WHERE businessName='$username' ORDER BY businessName;";
     }
 
     $result = $connection->query($query);
@@ -30,10 +30,11 @@
         echo '<h1>Tutte le tue valutazioni</h1>';
     }
 
-    echo '<table style="border-radius: 10px;"><tr style="border: 1px solid black;"><th></th><th></th><th>ID</th><th>Ragione sociale</th><th>Data di rilascio</th><th>Costo</th><th>Peso realmente sollevato</th><th>Peso massimo sollevabile</th><th>Indice</th><th>Documento</th><th>Validità</th></tr>';
+    echo '<table style="border-radius: 10px;"><tr style="border: 1px solid black;"><th></th><th></th><th>ID</th><th>Autore</th><th>Ragione sociale</th><th>Data di rilascio</th><th>Costo</th><th>Peso realmente sollevato</th><th>Peso massimo sollevabile</th><th>Indice</th><th>Documento</th><th>Validità</th></tr>';
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $id = $row['id'];
+            $id = $row['evaluation_id'];
+            $author = $row['username'];
             $businessName = $row['businessName'];
             $date = $row['date'];
             $cost = $row['cost'];
@@ -48,11 +49,11 @@
             }
             if ($maximumWeight != -1) {
                 echo "
-                <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
                 ";
             } else {
                 echo "
-                <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
                 ";
             }
             

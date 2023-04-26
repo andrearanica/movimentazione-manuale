@@ -38,8 +38,8 @@ if (isset($_SESSION['username'])) {
             <button type='button' class='btn btn-primary my-2' data-bs-toggle='modal' data-bs-target='#info-modal'>
                 Aiuto
             </button>
-
-            <div class='modal fade' id='info-modal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+        </div>
+        <div class='modal fade' id='info-modal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 <div class='modal-dialog'>
                     <div class='modal-content'>
                         <div class='modal-header'>
@@ -47,7 +47,7 @@ if (isset($_SESSION['username'])) {
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            <h4>Account</h4>
+                            <h4 class='text-center'>Account</h4>
                             <p>Un account può appartenere a un ruolo fra:</p>
                             <ul>
                                 <li><b>Admin</b>: può eseguire tutte le operazioni e creare nuovi utenti</li>
@@ -55,7 +55,7 @@ if (isset($_SESSION['username'])) {
                                 <li><b>Azienda</b>: può solamente visualizzare le valutazioni della propria azienda</li>
                             </ul>
                             <b>Per testare il funzionamento del programma sono stati preparati 3 utenti demo</b><br>
-                            <table class='container text-center'>
+                            <table class='container text-center my-2'>
                                 <tr><th>Ruolo</th><th>Username</th><th>Password</th></tr>
                                 <tr><td>Admin</td><td>mauriziogaffuri</td><td>mauriziogaffuri</td></tr>
                                 <tr><td>Operatore</td><td>operatore</td><td>operatore</td></tr>
@@ -64,7 +64,6 @@ if (isset($_SESSION['username'])) {
                     </div>
                 </div>
             </div>
-        </div>
         
         <script src='script.js'></script>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js' integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN' crossorigin='anonymous'></script>

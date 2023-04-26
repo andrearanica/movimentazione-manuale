@@ -18,7 +18,7 @@ class AjaxController {
                 $connection = new mysqli($ip, $user, $password, $db);
                 if (isset($_REQUEST['id'])) {
                     $id = $_REQUEST['id'];
-                    $query = "SELECT * FROM evaluations WHERE id='$id';";
+                    $query = "SELECT * FROM evaluations WHERE evaluation_id='$id';";
                 } else {
                     $businessName = $_REQUEST['businessName'];
                     if ($_SESSION['role'] == 1) {

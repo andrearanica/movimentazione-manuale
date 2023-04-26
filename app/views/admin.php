@@ -35,7 +35,7 @@ if (isset($_SESSION['username'])) {
             <?php /*require('')*/ ?>
             <?php
             if (isset($_GET['success'])){
-                echo '<div class="container alert alert-success"><b>Operazione avvenuta con successo</b></div>';
+                echo '<div class="container alert alert-success"><b>Operazione eseguita con successo</b></div>';
             }            
             ?>
             <hr>

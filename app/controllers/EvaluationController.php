@@ -124,7 +124,7 @@ class EvaluationController {
 
         $connection = new \mysqli($ip, $user, $password, $db);
 
-        $query = "SELECT * FROM evaluations WHERE id=$id;";
+        $query = "SELECT * FROM evaluations WHERE evaluation_id=$id;";
 
         $result = $connection->query($query);
 
@@ -232,11 +232,11 @@ class EvaluationController {
 
         $connection = new \mysqli($ip, $user, $password, $db);
 
-        $query = "UPDATE evaluations SET valid=0 WHERE id='$id'";
+        $this->NewEvaluation();
+
+        $query = "UPDATE evaluations SET valid=0 WHERE evaluation_id='$id'";
         $stmt = $connection->prepare($query);
         $stmt->execute();
-
-        $this->NewEvaluation();
 
         header('Location: dashboard?success');
     }
@@ -250,7 +250,7 @@ class EvaluationController {
     
             $connection = new \mysqli($ip, $user, $password, $db);
     
-            $query = "DELETE FROM evaluations WHERE id='$id';";
+            $query = "DELETE FROM evaluations WHERE evaluation_id='$id';";
             $stmt = $connection->prepare($query);
             $stmt->execute();
             header('Location: dashboard?success');

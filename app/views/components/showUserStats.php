@@ -23,7 +23,7 @@
                 $id = $row['author'];
                 $name_surname = $row['name_surname'];
                 $num_evaluations = $row['num_evaluations'];
-                echo "<td>$id</td><td>$name_surname</td><td>$num_evaluations</td>";
+                echo "<tr><td>$id</td><td>$name_surname</td><td>$num_evaluations</td></tr>";
             }
 
             ?>

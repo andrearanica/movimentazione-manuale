@@ -8,9 +8,6 @@ class SiteController {
     public function Dashboard () {
         require_once '../app/views/admin.php';
     }
-    public function Help () {
-        require_once '../app/views/help.php';
-    }
     public function NotFound () {
         require_once '../app/views/404.php';
         http_response_code(404);

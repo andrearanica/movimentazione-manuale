@@ -44,9 +44,6 @@ switch ($request) {
     case 'newUser':
         $userController->NewUser();
         break;
-    case 'help':
-        $siteController->Help();
-        break;
     default: 
         $siteController->NotFound();
 }
