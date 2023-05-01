@@ -17,6 +17,7 @@
 
 <p align="center"> 
     Software per il calcolo della movimentazione manuale dei carichi
+    <a href="https://andrearanica.altervista.org/movimentazione-manuale">Demo</a>
     <br> 
 </p>
 
