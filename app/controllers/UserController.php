@@ -9,7 +9,7 @@ class UserController {
         ini_set('display_errors', 1);
 
         $ip = '127.0.0.1';
-        $user = getenv('USERNAME');
+        $user = 'root';
         $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
 
@@ -46,7 +46,7 @@ class UserController {
         $role = $_GET['role'];
 
         $ip = '127.0.0.1';
-        $user = getenv('USERNAME');
+        $user = 'root';
         $pwd = getenv('PASSWORD');
         $db = 'my_andrearanica';
 

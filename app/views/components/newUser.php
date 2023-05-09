@@ -20,9 +20,9 @@
             <input name="password" type="password" id="password" class="form-control my-2 text-center">
             <label for="role">Ruolo</label>
             <select id="role" class="form-control text-center" name="role">
-                <option value="0">Visualizzatore (azienda)</option>
                 <option value="1">Amministratore</option>
                 <option value="2">Operatore</option>
+                <option value="0">Visualizzatore (azienda)</option>
             </select>
             <input type="submit" value="Salva" class="btn btn-success my-2">
         </form>

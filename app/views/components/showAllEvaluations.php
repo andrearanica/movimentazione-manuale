@@ -2,7 +2,7 @@
     <?php
 
     $ip = '127.0.0.1';
-    $user = getenv('USERNAME');
+    $user = 'root';
     $password = getenv('PASSWORD');
     $db = 'my_andrearanica';
 
@@ -30,7 +30,11 @@
         echo '<h1>Tutte le tue valutazioni</h1>';
     }
 
-    echo '<table style="border-radius: 10px;"><tr style="border: 1px solid black;"><th></th><th></th><th>ID</th><th>Autore</th><th>Ragione sociale</th><th>Data di rilascio</th><th>Costo</th><th>Peso realmente sollevato</th><th>Peso massimo sollevabile</th><th>Indice</th><th>Documento</th><th>Validità</th></tr>';
+    if ($_SESSION['role'] != 0) {
+        echo '<table style="border-radius: 10px;"><tr style="border: 1px solid black;"><th></th><th></th><th>ID</th><th>Autore</th><th>Ragione sociale</th><th>Data di rilascio</th><th>Costo</th><th>Peso realmente sollevato</th><th>Peso massimo sollevabile</th><th>Indice</th><th>Documento</th><th>Validità</th></tr>';
+    } else {
+        echo '<table style="border-radius: 10px;"><tr style="border: 1px solid black;"><th>ID</th><th>Autore</th><th>Ragione sociale</th><th>Data di rilascio</th><th>Costo</th><th>Peso realmente sollevato</th><th>Peso massimo sollevabile</th><th>Indice</th><th>Documento</th><th>Validità</th></tr>';
+    }
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $id = $row['evaluation_id'];
@@ -47,16 +51,27 @@
             } else {
                 $post = '<td style="color: red;">Scaduta</td>';
             }
-            if ($maximumWeight != -1) {
-                echo "
-                <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
-                ";
+            if ($_SESSION['role'] != 0) {
+                if ($maximumWeight != -1) {
+                    echo "
+                    <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                    ";
+                } else {
+                    echo "
+                    <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                    ";
+                }
             } else {
-                echo "
-                <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
-                ";
-            }
-            
+                if ($maximumWeight != -1) {
+                    echo "
+                    <tr style='border: 1px solid black;'><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                    ";
+                } else {
+                    echo "
+                    <tr style='border: 1px solid black;'><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                    ";
+                }
+            }        
         }
     }
     echo '</table>';

@@ -24,8 +24,8 @@ class EvaluationController {
         }
 
         $ip = '127.0.0.1';
-        $user = getenv('USERNAME');
-        $password = getenv('PASSWORD');
+        $user = 'root';
+        $password = '';
         $db = 'my_andrearanica';
 
         $connection = new \mysqli($ip, $user, $password, $db);
@@ -117,7 +117,7 @@ class EvaluationController {
         require('../app/fpdf/fpdf.php');
 
         $ip = '127.0.0.1';
-        $user = getenv('USERNAME');
+        $user = 'root';
         $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
         $id = $_REQUEST['id'];
@@ -225,26 +225,27 @@ class EvaluationController {
     }
     public function EditEvaluation () {
         $id = $_REQUEST['id'];
+        echo $id;
         $ip = '127.0.0.1';
-        $user = getenv('USERNAME');
+        $user = 'root';
         $password = getenv('PASSWORD');
         $db = 'my_andrearanica';
 
         $connection = new \mysqli($ip, $user, $password, $db);
 
-        $this->NewEvaluation();
-
         $query = "UPDATE evaluations SET valid=0 WHERE evaluation_id='$id'";
         $stmt = $connection->prepare($query);
         $stmt->execute();
 
-        header('Location: dashboard?success');
+        // $this->NewEvaluation();
+
+        // header('Location: dashboard?success');
     }
     public function DeleteEvaluation () {
         if (isset($_SESSION['username'])) {
             $id = $_REQUEST['id'];
             $ip = '127.0.0.1';
-            $user = getenv('USERNAME');
+            $user = 'root';
             $password = getenv('PASSWORD');
             $db = 'my_andrearanica';
     

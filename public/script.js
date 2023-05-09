@@ -176,7 +176,8 @@ function fillForm (id) {
         },
         success: data => {
             data = data[0]
-            document.getElementById('edit-id').value = data.id
+            console.log(data)
+            document.getElementById('edit-id').value = data.evaluation_id
             document.getElementById('edit-businessName').value = data.businessName
             document.getElementById('edit-cost').value = data.cost
             document.getElementById('edit-date').value = data.date

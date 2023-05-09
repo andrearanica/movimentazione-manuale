@@ -11,7 +11,7 @@ class AjaxController {
             case 'getEvaluation': 
 
                 $ip = '127.0.0.1';
-                $user = getenv('USERNAME');
+                $user = 'root';
                 $password = getenv('PASSWORD');
                 $db = 'my_andrearanica';
 
@@ -43,8 +43,8 @@ class AjaxController {
                 break;
             case 'tableInfo': 
                 $ip = '127.0.0.1';
-                $user = getenv('USERNAME');
-                $password = getenv('PASSWORD');
+                $user = 'root';
+                $password = '';
                 $db = 'my_andrearanica';
 
                 $connection = new mysqli($ip, $user, $password, $db);

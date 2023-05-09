@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
             <form action="editEvaluation" method='post'>
-                <input name='id' id='edit-id' style='display: none'>
+                <input name='id' id='edit-id'>
                 <label for="businessName">Ragione sociale</label>
                 <input required class="form-control my-2 text-center" name="businessName" id="edit-businessName" readonly>
                 <label for="cost">Costo</label>
