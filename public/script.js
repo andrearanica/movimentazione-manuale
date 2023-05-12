@@ -71,8 +71,29 @@ document.getElementById('oneHand').onmouseover = () => {
     
 }
 
+document.getElementById('search').addEventListener('click', async () => {
+    document.getElementById('searchBusinessName').innerHTML = ''
+    await $.ajax({
+        url: 'ajax',
+        data: {
+            request: 'get-all-businessnames'
+        },
+        dataType: 'json',
+        success: data => {
+            data.map(d => {
+            document.getElementById('searchBusinessName').innerHTML += `
+                <option value=${ d.businessName }>${ d.businessName }</option>
+            `
+            })
+        },
+        error: data => {
+            console.log(data)
+        }
+    })
+})
+
 document.getElementById('searchEvaluationForm').addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault()
     $.ajax({
         url: 'ajax',
         dataType: 'json',
@@ -114,7 +135,7 @@ function fillForm (id) {
         success: (result) => {
             document.getElementById('edit-heightFromGround').innerHTML = ''
             result.map(r => document.getElementById('edit-heightFromGround').innerHTML += `
-            <option value=${ r.height }>${ r.height }</option>
+            <option value=${ r.height }>${ r.height } cm</option>
             `)
         }
     })
@@ -128,7 +149,7 @@ function fillForm (id) {
         success: (result) => {
             document.getElementById('edit-verticalDistance').innerHTML = ''
             result.map(r => document.getElementById('edit-verticalDistance').innerHTML += `
-            <option value=${ r.dislocation }>${ r.dislocation }</option>
+            <option value=${ r.dislocation }>${ r.dislocation } cm</option>
             `)
         }
     })
@@ -141,7 +162,7 @@ function fillForm (id) {
         dataType: 'json',
         success: (result) => {
             document.getElementById('edit-horizontalDistance').innerHTML = ''
-            result.map(r => document.getElementById('edit-horizontalDistance').innerHTML += `<option value=${ r.distance }>${ r.distance }</option>`)
+            result.map(r => document.getElementById('edit-horizontalDistance').innerHTML += `<option value=${ r.distance }>${ r.distance } cm</option>`)
         } 
     })
     $.ajax({
@@ -153,7 +174,7 @@ function fillForm (id) {
         dataType: 'json',
         success: (result) => {
             document.getElementById('edit-angularDisplacement').innerHTML = ''
-            result.map(r => document.getElementById('edit-angularDisplacement').innerHTML += `<option value=${ r.displacement }>${ r.displacement }</option>`)
+            result.map(r => document.getElementById('edit-angularDisplacement').innerHTML += `<option value=${ r.displacement }>${ r.displacement } °</option>`)
         }
     })
     $.ajax({

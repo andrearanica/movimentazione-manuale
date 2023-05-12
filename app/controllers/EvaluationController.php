@@ -225,7 +225,6 @@ class EvaluationController {
     }
     public function EditEvaluation () {
         $id = $_REQUEST['id'];
-        echo $id;
         $ip = '127.0.0.1';
         $user = 'root';
         $password = getenv('PASSWORD');
@@ -237,9 +236,9 @@ class EvaluationController {
         $stmt = $connection->prepare($query);
         $stmt->execute();
 
-        // $this->NewEvaluation();
+        $this->NewEvaluation();
 
-        // header('Location: dashboard?success');
+        header('Location: dashboard?success');
     }
     public function DeleteEvaluation () {
         if (isset($_SESSION['username'])) {

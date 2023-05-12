@@ -74,6 +74,26 @@ class AjaxController {
 
                 echo json_encode($array);
                 break;
+            case 'get-all-businessnames':
+                $ip = '127.0.0.1';
+                $user = 'root';
+                $password = '';
+                $db = 'my_andrearanica';
+
+                $connection = new mysqli($ip, $user, $password, $db);
+
+                $array = [];
+                $n = 0;
+
+                $query = "SELECT DISTINCT businessName FROM evaluations;";
+                $result = $connection->query($query);
+                while ($row = $result->fetch_assoc()) {
+                    $array[$n] = $row;
+                    $n = $n + 1;
+                }
+
+                echo json_encode($array);
+                break;
         }
     }
 }
