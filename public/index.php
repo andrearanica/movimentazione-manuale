@@ -17,7 +17,7 @@ $ajaxController       = new AjaxController();
 $evaluationController = new EvaluationController();
 
 switch ($request) {
-    case 'home':
+    case '':
         $siteController->Home();
         break;
     case 'dashboard':

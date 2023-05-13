@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_SESSION['name_surname'])) {
-    header('Location: home');
+    header('Location: ./');
 }
 
 ?>
