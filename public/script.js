@@ -81,8 +81,9 @@ document.getElementById('search').addEventListener('click', async () => {
         dataType: 'json',
         success: data => {
             data.map(d => {
+                console.log(d)
             document.getElementById('searchBusinessName').innerHTML += `
-                <option value=${ d.businessName }>${ d.businessName }</option>
+                <option value='${ d.businessName }'>${ d.businessName }</option>
             `
             })
         },
@@ -94,6 +95,7 @@ document.getElementById('search').addEventListener('click', async () => {
 
 document.getElementById('searchEvaluationForm').addEventListener('submit', (e) => {
     e.preventDefault()
+    console.log(document.getElementById('searchBusinessName').value)
     $.ajax({
         url: 'ajax',
         dataType: 'json',
