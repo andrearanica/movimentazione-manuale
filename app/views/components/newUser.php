@@ -10,10 +10,8 @@
       </div>
       <div class="modal-body">
         <form action="newUser">
-            <label for="name">Nome</label>
+            <label for="name">Nome e cognome</label>
             <input id="name" name="name" class="form-control my-2 text-center">
-            <label for="surname">Cognome</label>
-            <input id="surname" class="form-control my-2 text-center" name="surname">
             <label for="username">Username</label>
             <input id="username" class="form-control my-2 text-center" name="username">
             <label for="password">Password</label>

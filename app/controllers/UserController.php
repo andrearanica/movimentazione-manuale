@@ -35,12 +35,11 @@ class UserController {
             $_SESSION['role'] = $row['role'];
             header('Location: dashboard');
         } else {
-            header('Location: home?error');
+            header('Location: index.php?error');
         }
     }
     public function NewUser () {
         $name = $_GET['name'];
-        $surname = $_GET['surname'];
         $username = $_GET['username'];
         $password = hash('sha256', $_GET['password']);
         $role = $_GET['role'];
@@ -52,7 +51,7 @@ class UserController {
 
         $connection = new mysqli($ip, $user, $pwd, $db);
 
-        $query = "INSERT INTO users (name_surname, username, password, role) VALUES ('$name $surname', '$username', '$password', '$role');";
+        $query = "INSERT INTO users (name_surname, username, password, role) VALUES ('$name', '$username', '$password', '$role');";
 
         $connection->query($query);
 
