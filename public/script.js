@@ -217,3 +217,22 @@ function fillForm (id) {
 
 document.getElementById('date').value = Date.now()
 document.getElementById('edit-date').value = Date.now()
+
+function removeEvaluation (id) {
+    $.ajax({
+        url: 'ajax?request=getEvaluation',
+        dataType: 'json',
+        data: {
+            id: id
+        },
+        success: data => {
+            data = data[0]
+            console.log(data)
+            document.getElementById('deleteEvaluationBody').innerHTML = `Sei sicuro di voler eliminare la valutazione ${ data.evaluation_id } per la ragione sociale ${ data.businessName }?`
+            document.getElementById('deleteEvaluationA').href = `deleteEvaluation?id=${ data.evaluation_id }`
+        },
+        error: data => {
+            console.log(data)
+        }
+    })
+}

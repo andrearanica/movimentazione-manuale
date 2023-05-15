@@ -54,11 +54,11 @@
             if ($_SESSION['role'] != 0) {
                 if ($maximumWeight != -1) {
                     echo "
-                    <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                    <tr style='border: 1px solid black;'><td><a class='btn' data-bs-toggle='modal' data-bs-target='#deleteEvaluationModal' onclick='removeEvaluation(`$id`)'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
                     ";
                 } else {
                     echo "
-                    <tr style='border: 1px solid black;'><td><a href='deleteEvaluation?id=$id'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
+                    <tr style='border: 1px solid black;'><td><a class='btn' data-bs-toggle='modal' data-bs-target='#deleteEvaluationModal' onclick='removeEvaluation(`$id`)'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
                     ";
                 }
             } else {
@@ -89,4 +89,21 @@
     }
 
     ?>
+</div>
+<div class="modal fade" id="deleteEvaluationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id='deleteEvaluationBody'>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <a id='deleteEvaluationA'><button type="button" class="btn btn-primary">Conferma</button></a>
+      </div>
+    </div>
+  </div>
 </div>
