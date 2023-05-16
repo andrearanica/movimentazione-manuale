@@ -22,7 +22,7 @@ class AjaxController {
                 } else {
                     $businessName = $_REQUEST['businessName'];
                     if ($_SESSION['role'] == 1) {
-                        $query = "SELECT * FROM evaluations WHERE businessName='$businessName';";
+                        $query = "SELECT * FROM evaluations WHERE businessName='$businessName' ORDER BY businessName, evaluation_id DESC, valid DESC;";
                     } else {
                         $id = $_SESSION['id'];
                         $query = "SELECT * FROM evaluations WHERE businessName='$businessName' AND author='$id';";

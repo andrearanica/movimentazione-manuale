@@ -11,7 +11,7 @@
     $id = $_SESSION['id'];
 
     if ($_SESSION['role'] == 1) {
-        $query = 'SELECT * FROM evaluations JOIN users ON evaluations.author=users.id ORDER BY businessName, valid DESC, evaluation_id';
+        $query = 'SELECT * FROM evaluations JOIN users ON evaluations.author=users.id ORDER BY businessName, evaluation_id DESC, valid DESC';
     } else if ($_SESSION['role'] == 2) {
         $query = "SELECT * FROM evaluations JOIN users ON evaluations.author=users.id WHERE author=$id ORDER BY businessName, valid DESC, evaluation_id;";
     } else if ($_SESSION['role'] == 0) {
@@ -52,25 +52,9 @@
                 $post = '<td style="color: red;">Scaduta</td>';
             }
             if ($_SESSION['role'] != 0) {
-                if ($maximumWeight != -1) {
-                    echo "
-                    <tr style='border: 1px solid black;'><td><a class='btn' data-bs-toggle='modal' data-bs-target='#deleteEvaluationModal' onclick='removeEvaluation(`$id`)'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
-                    ";
-                } else {
-                    echo "
-                    <tr style='border: 1px solid black;'><td><a class='btn' data-bs-toggle='modal' data-bs-target='#deleteEvaluationModal' onclick='removeEvaluation(`$id`)'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
-                    ";
-                }
+                echo ($maximumWeight != -1) ? "<tr style='border: 1px solid black;'><td><a class='btn' data-bs-toggle='modal' data-bs-target='#deleteEvaluationModal' onclick='removeEvaluation(`$id`)'>🗑️</a></td><td><button id='editEvaluationButton' onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a target='_blank' style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>" : "<tr style='border: 1px solid black;'><td><a class='btn' data-bs-toggle='modal' data-bs-target='#deleteEvaluationModal' onclick='removeEvaluation(`$id`)'>🗑️</a></td><td><button id='editEvaluationButton'  onclick='fillForm($id)' class='btn' data-bs-toggle='modal' data-bs-target='#editEvaluationModal'>✏️</button></td><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a target='_blank' style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>";
             } else {
-                if ($maximumWeight != -1) {
-                    echo "
-                    <tr style='border: 1px solid black;'><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
-                    ";
-                } else {
-                    echo "
-                    <tr style='border: 1px solid black;'><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>
-                    ";
-                }
+                echo ($maximumWeight != -1) ? "<tr style='border: 1px solid black;'><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>$maximumWeight kg</td><td>$IR</td><td><a target='_blank' style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>" : "<tr style='border: 1px solid black;'><td>$id</td><td>$author</td><td>$businessName</td><td>$date</td><td>$cost €</td><td>$realWeight kg</td><td>Non calcolabile</td><td>Non calcolabile</td><td><a target='_blank' style='color: black; text-decoration: underline;' href='printPdf?id=$id'>PDF</a></td>$post</tr>";
             }        
         }
     }
@@ -94,7 +78,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina valutazione</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id='deleteEvaluationBody'>

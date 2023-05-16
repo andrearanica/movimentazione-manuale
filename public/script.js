@@ -113,7 +113,9 @@ document.getElementById('searchEvaluationForm').addEventListener('submit', (e) =
                 <div class="card my-2" style="width: 18rem; margin-bottom: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">${ r.businessName }</h5>
-                        <a href="printPdf?id=${ r.evaluation_id }"><button class="btn btn-primary">Stampa PDF</button></a>
+                        <b>${ r.IR != -1 ? `Indice di sollevamento: ${ r.IR }` : 'Indice non calcolabile' }</b><br>
+                        <a href="printPdf?id=${ r.evaluation_id }" target='_blank'><button class="btn btn-primary my-2">Stampa PDF</button></a>
+                        ${ r.valid == '0' ? '<div class="alert alert-danger my-2"><b>Non valida</b></div>' : '<div class="alert alert-success my-2"><b>Valida</b></div>' }
                     </div>
                 </div>
                 `
@@ -199,23 +201,27 @@ function fillForm (id) {
         success: data => {
             data = data[0]
             console.log(data)
-            document.getElementById('edit-id').value = data.evaluation_id
-            document.getElementById('edit-businessName').value = data.businessName
-            document.getElementById('edit-cost').value = data.cost
-            document.getElementById('edit-date').value = data.date
-            document.getElementById('edit-realWeight').value = data.realWeight
-            document.getElementById('edit-heightFromGround').value = data.heightFromGround
-            document.getElementById('edit-verticalDistance').value = data.verticalDistance
-            document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
-            document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
-            document.getElementById('edit-gripValue').value = data.gripValue
-            document.getElementById('edit-frequency').value = data.frequency
-            document.getElementById('edit-duration').value = data.duration
-            if (data.oneHand == '1') {
-                document.getElementById('edit-oneHand').checked = true
-            }
-            if (data.twoPeople == '1') {
-                document.getElementById('edit-twoPeople').checked = true
+            if (data.valid == '1') {
+                document.getElementById('edit-id').value = data.evaluation_id
+                document.getElementById('edit-businessName').value = data.businessName
+                document.getElementById('edit-cost').value = data.cost
+                document.getElementById('edit-date').value = data.date
+                document.getElementById('edit-realWeight').value = data.realWeight
+                document.getElementById('edit-heightFromGround').value = data.heightFromGround
+                document.getElementById('edit-verticalDistance').value = data.verticalDistance
+                document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
+                document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
+                document.getElementById('edit-gripValue').value = data.gripValue
+                document.getElementById('edit-frequency').value = data.frequency
+                document.getElementById('edit-duration').value = data.duration
+                if (data.oneHand == '1') {
+                    document.getElementById('edit-oneHand').checked = true
+                }
+                if (data.twoPeople == '1') {
+                    document.getElementById('edit-twoPeople').checked = true
+                }
+            } else {
+                document.getElementById('editEvaluationForm').innerHTML = 'Questa valutazione è scaduta'
             }
         },
         error: data => {

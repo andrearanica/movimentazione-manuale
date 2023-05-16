@@ -2,7 +2,7 @@
     <div class='my-2'>
         <h4><b>Statistiche dei lavoratori</b></h4>
         <center><table class='text-center'>
-            <tr><th>ID</th><th>Nome</th><th>Valutazioni compilate</th></tr>
+            <tr style='border: 1px solid black;'><th>ID lavoratore</th><th>Nome utente del lavoratore</th><th>Valutazioni compilate</th></tr>
             <tr>
             <?php
 
@@ -23,7 +23,7 @@
                 $id = $row['author'];
                 $name_surname = $row['name_surname'];
                 $num_evaluations = $row['num_evaluations'];
-                echo "<tr><td>$id</td><td>$name_surname</td><td>$num_evaluations</td></tr>";
+                echo "<tr style='border: 1px solid black;'><td>$id</td><td>$name_surname</td><td>$num_evaluations</td></tr>";
             }
 
             ?>

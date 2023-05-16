@@ -6,7 +6,7 @@
             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
         </div>
         <div class='modal-body'>
-            <form action='editEvaluation' method='post'>
+            <form action='editEvaluation' id='editEvaluationForm' method='post'>
                 <input name='id' id='edit-id' style='display: none;'>
                 <label for='businessName'>Ragione sociale</label>
                 <input required class='form-control my-2 text-center' name='businessName' id='edit-businessName' readonly>
