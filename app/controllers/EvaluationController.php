@@ -62,21 +62,21 @@ class EvaluationController {
             $frequencyFactor = $row['factor'];
         }
 
-        if (isset($_GET['oneHand'])) {
-            $oneHand = $_GET['oneHand'];
+        if (isset($_REQUEST['oneHand'])) {
+            $oneHand = true;
         } else {
-            $oneHand = 'off';
+            $oneHand = false;
         }
         $oneHandFactor = 1;
 
-        if (isset($_GET['twoPeople'])) {
-            $twoPeople = $_GET['twoPeople'];
+        if (isset($_REQUEST['twoPeople'])) {
+            $twoPeople = true;
         } else {
-            $twoPeople = 'off';
+            $twoPeople = false;
         }
         $twoPeopleFactor = 1;
 
-        if ($oneHand == 'on') {
+        if ($oneHand) {
             $oneHand = 1;
             $oneHandFactor = 0.6;    
         } else {
@@ -85,7 +85,7 @@ class EvaluationController {
 
         // )
 
-        if ($twoPeople == 'on') {
+        if ($twoPeople) {
             $twoPeople = 1;
             $twoPeopleFactor = 0.85 / 2;
         } else {
@@ -101,12 +101,13 @@ class EvaluationController {
             $IR = floatval(intval($realWeight) / $maximumWeight);
         }
 
-        echo "$heightFromGroundFactor $verticalDistanceFactor $horizontalDistanceFactor $angularDisplacementFactor $gripValueFactor $frequencyFactor";
+        // echo "$heightFromGroundFactor $verticalDistanceFactor $horizontalDistanceFactor $angularDisplacementFactor $gripValueFactor $frequencyFactor $oneHandFactor $twoPeopleFactor";
 
 
         $author = $_SESSION['id'];
 
-        $query = "INSERT INTO evaluations (author, businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$author', '$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', $oneHand, $twoPeople, '$maximumWeight', '$IR');";
+        $query = "INSERT INTO evaluations (author, businessName, cost, date, realWeight, heightFromGround, verticalDistance, horizontalDistance, angularDisplacement, gripValue, frequency, duration, oneHand, twoPeople, maximumWeight, IR) VALUES ('$author', '$businessName', $cost, '$date', $realWeight, '$heightFromGround', '$verticalDistance', '$horizontalDistance', '$angularDisplacement', '$gripValue', '$frequency', '$duration', '$oneHand', '$twoPeople', '$maximumWeight', '$IR');";
+        echo $query;
 
         $result = $connection->query($query);
 
@@ -238,7 +239,7 @@ class EvaluationController {
 
         $this->NewEvaluation();
 
-        header('Location: dashboard?success');
+        // header('Location: dashboard?success');
     }
     public function DeleteEvaluation () {
         if (isset($_SESSION['username'])) {

@@ -15,7 +15,7 @@
                 <label for='date'>Data di emissione</label>
                 <input required class='form-control my-2 text-center' name='date' id='date' type='date'>
                 <label for='realWeight'>Peso reale</label>
-                <input required class='form-control my-2 text-center' name='realWeight' id='realWeight' type='number'>
+                <input required class='form-control my-2 text-center' name='realWeight' id='realWeight' type='number' min=3 max=30>
                 <label for='heightFromGround'>Altezza da terra delle mani all'inizio del sollevamento</label>
                 <select required class='form-control my-2 text-center' name='heightFromGround' id='heightFromGround' type='number'>
                     

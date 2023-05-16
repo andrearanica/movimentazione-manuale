@@ -113,8 +113,7 @@ document.getElementById('searchEvaluationForm').addEventListener('submit', (e) =
                 <div class="card my-2" style="width: 18rem; margin-bottom: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">${ r.businessName }</h5>
-                        <p class="card-text">Indice di sollevamento: ${ r.IR }</p>
-                        <a href="printPdf?id=${ r.id }"><button class="btn btn-primary">Stampa PDF</button></a>
+                        <a href="printPdf?id=${ r.evaluation_id }"><button class="btn btn-primary">Stampa PDF</button></a>
                     </div>
                 </div>
                 `
@@ -206,10 +205,18 @@ function fillForm (id) {
             document.getElementById('edit-date').value = data.date
             document.getElementById('edit-realWeight').value = data.realWeight
             document.getElementById('edit-heightFromGround').value = data.heightFromGround
-            document.getElementById('edit-verticalDistance').verticalDistance = data.verticalDistance
+            document.getElementById('edit-verticalDistance').value = data.verticalDistance
             document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
             document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
             document.getElementById('edit-gripValue').value = data.gripValue
+            document.getElementById('edit-frequency').value = data.frequency
+            document.getElementById('edit-duration').value = data.duration
+            if (data.oneHand == '1') {
+                document.getElementById('edit-oneHand').checked = true
+            }
+            if (data.twoPeople == '1') {
+                document.getElementById('edit-twoPeople').checked = true
+            }
         },
         error: data => {
             console.log(data)
@@ -217,8 +224,8 @@ function fillForm (id) {
     })
 }
 
-document.getElementById('date').value = Date.now()
-document.getElementById('edit-date').value = Date.now()
+// document.getElementById('date').value = Date.now()
+// document.getElementById('edit-date').value = `${ Date }`
 
 function removeEvaluation (id) {
     $.ajax({
