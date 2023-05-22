@@ -155,41 +155,58 @@ class EvaluationController {
                 $pdf->Cell(190, 10, "Valutazione scaduta", 1, 1, 'C', true);
             }
 
-            $pdf->Cell(190, 40, "Ragione sociale: $businessName", 1, 1, 'C');
+            $pdf->Cell(190, 20, "Ragione sociale: $businessName", 1, 1, 'C');
             $pdf->SetFont('Arial', 'B', 14);
-            $pdf->Cell(0, 14, "Data di rilascio valutazione: $date", 0, 0, 'C', false);
-            $pdf->Ln();
-            $pdf->Cell(0, 14, "Costo: $cost euro", 0, 0, 'C', false);
+            $pdf->Cell(0, 14, "Data: $date                                                                                  Costo: $cost euro", 0, 0, 'L', false);
             $pdf->Ln();
             $pdf->Ln();
-            $pdf->Cell(190, 10, "Fattori moltiplicativi", 1, 1, 'C');
             $pdf->SetFont('Arial', 'B', 10);
-            $pdf->Cell(0, 10, "Altezza da terra delle mani all'inizio del sollevamento: $heightFromGround cm", 0, 0, 'C', false);
+            $pdf->SetFillColor(150, 150, 150);
+            $pdf->Cell(0, 10, "Altezza da terra delle mani all'inizio del sollevamento", 0, 0, 'L', true);
             $pdf->Ln();
-            $pdf->Cell(0, 10, "Distanza verticale di spostamento del peso fra inizio e fine del sollevamento: $verticalDistance cm", 0, 0, 'C', false);
+            $pdf->Cell(0, 10, "$heightFromGround cm", 0, 0, 'L', false);
             $pdf->Ln();
-            $pdf->Cell(0, 10, "Distanza orizzontale tra le mani e il punto di mezzo delle caviglie: $horizontalDistance cm", 0, 0, 'C', false);
+            $pdf->Cell(0, 10, "Distanza verticale di spostamento del peso fra inizio e fine del sollevamento", 0, 0, 'L', true);
             $pdf->Ln();
-            $pdf->Cell(0, 10, "Dislocazione angolare del peso in gradi: $angularDisplacement gradi", 0, 0, 'C', false);
+            $pdf->Cell(0, 10, "$verticalDistance cm", 0, 0, 'L', false);
             $pdf->Ln();
-            $pdf->Cell(0, 10, "Giudizio sulla presa del carico: $gripValue", 0, 0, 'C', false);
+            $pdf->Cell(0, 10, "Distanza orizzontale tra le mani e il punto di mezzo delle caviglie", 0, 0, 'L', true);
             $pdf->Ln();
-            $pdf->Cell(0, 10, "Frequenza: $frequency; Durata: $duration", 0, 0, 'C', false);
+            $pdf->Cell(0, 10, "$horizontalDistance cm", 0, 0, 'L', false);
+            $pdf->Ln();
+            $pdf->Cell(0, 10, "Dislocazione angolare del peso in gradi", 0, 0, 'L', true);
+            $pdf->Ln();
+            $pdf->Cell(0, 10, "$angularDisplacement gradi", 0, 0, 'L', false);
+            $pdf->Ln();
+            $pdf->Cell(0, 10, "Giudizio sulla presa del carico", 0, 0, 'L', true);
+            $pdf->Ln();
+            $pdf->Cell(0, 10, "$gripValue", 0, 0, 'L', false);
+            $pdf->Ln();
+            $pdf->Cell(0, 10, "Frequenza: e durata", 0, 0, 'L', true);
+            $pdf->Ln();
+            $pdf->Cell(0, 10, "$frequency gesti al minuto per $duration", 0, 0, 'L', false);
             $pdf->Ln();
             if ($oneHand == 1) {
-                $pdf->Cell(0, 10, "Sollevamento con una sola mano? Si'", 0, 0, 'C', false);
+                $pdf->Cell(0, 10, "Sollevamento con una sola mano? Si'", 0, 0, 'L', true);
+                $pdf->Ln();
+                $pdf->Cell(0, 10, "Si'", 0, 0, 'L', false);
             } else {
-                $pdf->Cell(0, 10, "Sollevamento con una mano? No", 0, 0, 'C', false);
+                $pdf->Cell(0, 10, "Sollevamento con una mano?", 0, 0, 'L', true);
+                $pdf->Ln();
+                $pdf->Cell(0, 10, "No", 0, 0, 'L', false);
             }
             $pdf->Ln();
             if ($twoPeople == 1) {
-                $pdf->Cell(0, 10, "Sollevamento fatto da due persone: Si'", 0, 0, 'C', false);
+                $pdf->Cell(0, 10, "Sollevamento fatto da due persone: Si'", 0, 0, 'L', true);
+                $pdf->Ln();
+                $pdf->Cell(0, 10, "Si'", 0, 0, 'L', false);
             } else {
-                $pdf->Cell(0, 10, "Sollevamento fatto da due persone? No", 0, 0, 'C', false);
+                $pdf->Cell(0, 10, "Sollevamento fatto da due persone?", 0, 0, 'L', true);
+                $pdf->Ln();
+                $pdf->Cell(0, 10, "No", 0, 0, 'L', false);
             }
             $pdf->Ln();
-            $pdf->SetFont('Arial', 'B', 14);
-            $pdf->Cell(190, 10, 'Valutazione', 1, 1, 'C');
+            $pdf->Ln();
             
             if ($maximumWeight < 0) {
                 $pdf->SetFillColor(204, 51, 0); 
@@ -198,9 +215,7 @@ class EvaluationController {
                 $pdf->Cell(190, 20, "Bisogna riprogettare la postazione lavorativa e le attivita' di lavoro", 1, 1, 'C', true);
             } else {
                 $pdf->SetFont('Arial', 'B', 10);
-                $pdf->Cell(0, 10, "Peso massimo sollevabile: $maximumWeight kg", 0, 0, 'C', false);
-                $pdf->Ln();
-                $pdf->Cell(0, 10, "Peso realmente sollevato: $realWeight kg", 0, 0, 'C', false);
+                $pdf->Cell(0, 10, "Peso massimo sollevabile: $maximumWeight kg | Peso realmente sollevato: $realWeight kg", 0, 0, 'C', false);
                 $pdf->Ln();
                 if ($IR <= 0.85) {
                     $pdf->SetFillColor(0, 204, 1);
@@ -215,8 +230,7 @@ class EvaluationController {
                 } else if ($IR <= 0.99) {
                     $pdf->Cell(190, 20, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'C', true);
                 } else {
-                    $pdf->Cell(190, 20, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale", 1, 1, 'C', true);
-                    $pdf->Cell(190, 20, " e la formazione e informazione del personale", 1, 1, 'C', true);
+                    $pdf->MultiCell(190, 10, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale \n e la formazione e informazione del personale", 1, 'C', true);
                 }
             }
             
