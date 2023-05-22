@@ -1,4 +1,4 @@
-<div id="table" class="card text-center my-4" style='border: none;'>
+<div id="table" class="card text-center my-4 table-responsive" style='border: none;'>
     <?php
 
     $ip = '127.0.0.1';

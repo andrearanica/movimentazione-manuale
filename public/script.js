@@ -9,7 +9,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         success: (result) => {
             document.getElementById('heightFromGround').innerHTML = ''
             result.map(r => document.getElementById('heightFromGround').innerHTML += `
-            <option value=${ r.height }>${ r.height }</option>
+            <option value=${ r.height }>${ r.height } cm</option>
             `)
         }
     })
@@ -23,7 +23,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         success: (result) => {
             document.getElementById('verticalDistance').innerHTML = ''
             result.map(r => document.getElementById('verticalDistance').innerHTML += `
-            <option value=${ r.dislocation }>${ r.dislocation }</option>
+            <option value=${ r.dislocation }>${ r.dislocation } cm</option>
             `)
         }
     })
@@ -36,7 +36,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         dataType: 'json',
         success: (result) => {
             document.getElementById('horizontalDistance').innerHTML = ''
-            result.map(r => document.getElementById('horizontalDistance').innerHTML += `<option value=${ r.distance }>${ r.distance }</option>`)
+            result.map(r => document.getElementById('horizontalDistance').innerHTML += `<option value=${ r.distance }>${ r.distance } cm</option>`)
         } 
     })
     $.ajax({
@@ -48,7 +48,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         dataType: 'json',
         success: (result) => {
             document.getElementById('angularDisplacement').innerHTML = ''
-            result.map(r => document.getElementById('angularDisplacement').innerHTML += `<option value=${ r.displacement }>${ r.displacement }</option>`)
+            result.map(r => document.getElementById('angularDisplacement').innerHTML += `<option value=${ r.displacement }>${ r.displacement } cm</option>`)
         }
     })
     $.ajax({
@@ -60,7 +60,7 @@ document.getElementById('newEvaluationButton').addEventListener('click', () => {
         dataType: 'json',
         success: (result) => {
             document.getElementById('gripValue').innerHTML = ''
-            result.map(r => document.getElementById('gripValue').innerHTML += `<option value=${ r.value }>${ r.value }</option>`)
+            result.map(r => document.getElementById('gripValue').innerHTML += `<option value=${ r.value }>${ r.value } cm</option>`)
         }
     })
 })
@@ -201,27 +201,23 @@ function fillForm (id) {
         success: data => {
             data = data[0]
             console.log(data)
-            if (data.valid == '1') {
-                document.getElementById('edit-id').value = data.evaluation_id
-                document.getElementById('edit-businessName').value = data.businessName
-                document.getElementById('edit-cost').value = data.cost
-                document.getElementById('edit-date').value = data.date
-                document.getElementById('edit-realWeight').value = data.realWeight
-                document.getElementById('edit-heightFromGround').value = data.heightFromGround
-                document.getElementById('edit-verticalDistance').value = data.verticalDistance
-                document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
-                document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
-                document.getElementById('edit-gripValue').value = data.gripValue
-                document.getElementById('edit-frequency').value = data.frequency
-                document.getElementById('edit-duration').value = data.duration
-                if (data.oneHand == '1') {
-                    document.getElementById('edit-oneHand').checked = true
-                }
-                if (data.twoPeople == '1') {
-                    document.getElementById('edit-twoPeople').checked = true
-                }
-            } else {
-                document.getElementById('editEvaluationForm').innerHTML = 'Questa valutazione è scaduta'
+            document.getElementById('edit-id').value = data.evaluation_id
+            document.getElementById('edit-businessName').value = data.businessName
+            document.getElementById('edit-cost').value = data.cost
+            document.getElementById('edit-date').value = data.date
+            document.getElementById('edit-realWeight').value = data.realWeight
+            document.getElementById('edit-heightFromGround').value = data.heightFromGround
+            document.getElementById('edit-verticalDistance').value = data.verticalDistance
+            document.getElementById('edit-horizontalDistance').value = data.horizontalDistance
+            document.getElementById('edit-angularDisplacement').value = data.angularDisplacement
+            document.getElementById('edit-gripValue').value = data.gripValue
+            document.getElementById('edit-frequency').value = data.frequency
+            document.getElementById('edit-duration').value = data.duration
+            if (data.oneHand == '1') {
+                document.getElementById('edit-oneHand').checked = true
+            }
+            if (data.twoPeople == '1') {
+                document.getElementById('edit-twoPeople').checked = true
             }
         },
         error: data => {

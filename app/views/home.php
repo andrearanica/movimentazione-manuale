@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 
 if (isset($_SESSION['username'])) {
-  // header('Location: dashboard');
+   header('Location: dashboard');
 }
 
 ?>
