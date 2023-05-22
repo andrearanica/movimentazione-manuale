@@ -206,7 +206,6 @@ class EvaluationController {
                 $pdf->Cell(0, 10, "No", 0, 0, 'L', false);
             }
             $pdf->Ln();
-            $pdf->Ln();
             
             if ($maximumWeight < 0) {
                 $pdf->SetFillColor(204, 51, 0); 
